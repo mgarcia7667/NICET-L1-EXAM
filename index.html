@@ -1002,18 +1002,30 @@ function renderFilterTabs(sc) {
   var wrong = 0;
   for (var i in state.answers) { if (state.answers[i] !== QUESTIONS[i].a) wrong++; }
   var unanswered = sc.total - sc.ans;
-  var html = '<button class="ftab ' + (state.filter === "all" ? "active" : "") + '" onclick="setFilter('all')">All (' + sc.total + ')</button>';
-  html += '<button class="ftab ' + (state.filter === "unanswered" ? "active" : "") + '" onclick="setFilter('unanswered')">Unanswered (' + unanswered + ')</button>';
-  html += '<button class="ftab ' + (state.filter === "wrong" ? "active warn-tab" : "warn-tab") + '" onclick="setFilter('wrong')">Incorrect (' + wrong + ')</button>';
+  var tabs = [
+    {id:'all', label:'All (' + sc.total + ')', cls: state.filter==='all' ? 'ftab active' : 'ftab'},
+    {id:'unanswered', label:'Unanswered (' + unanswered + ')', cls: state.filter==='unanswered' ? 'ftab active' : 'ftab'},
+    {id:'wrong', label:'Incorrect (' + wrong + ')', cls: state.filter==='wrong' ? 'ftab active warn-tab' : 'ftab warn-tab'}
+  ];
   for (var s = 0; s < SECTIONS.length; s++) {
     var sec = SECTIONS[s];
     var c = cc[sec.id];
     var allDone = c.answered === c.total && c.total > 0;
     var isActive = state.filter === sec.id;
-    var label = sec.label.split(' ').slice(0, 2).join(' ');
-    html += '<button class="ftab ' + (isActive ? 'active' : (allDone ? 'done-tab' : '')) + '" onclick="setFilter('' + sec.id + '')">' + label + ' (' + c.total + ')</button>';
+    var label2 = sec.label.split(' ').slice(0,2).join(' ') + ' (' + c.total + ')';
+    var cls2 = isActive ? 'ftab active' : (allDone ? 'ftab done-tab' : 'ftab');
+    tabs.push({id: sec.id, label: label2, cls: cls2});
   }
-  document.getElementById('filter-tabs').innerHTML = html;
+  var container = document.getElementById('filter-tabs');
+  container.innerHTML = '';
+  for (var t = 0; t < tabs.length; t++) {
+    var btn = document.createElement('button');
+    btn.className = tabs[t].cls;
+    btn.textContent = tabs[t].label;
+    btn.setAttribute('data-filter', tabs[t].id);
+    btn.addEventListener('click', function() { setFilter(this.getAttribute('data-filter')); });
+    container.appendChild(btn);
+  }
 }
 function renderQuestions() {
   var qs = filteredQuestions();
