@@ -1,0 +1,1079 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NICET Level I — Fire Tech West LLC</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a1a0a;--bg2:#0f220f;--bg3:#162816;--border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.14);--text:#ddeedd;--text2:#7fa88a;--text3:#4a7a54;--accent:#22c55e;--orange:#F97316;--red:#DC2626;--blue:#3b82f6;--blue2:#60a5fa;--green:#22c55e;--green2:#4ade80;--yellow:#f59e0b;--red2:#f87171;--radius:10px;--radius-lg:16px;}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--bg);color:var(--text);font-family:'Barlow',sans-serif;font-size:15px;line-height:1.6;overflow-x:hidden;min-height:100vh}
+#brand-header{background:linear-gradient(135deg,#1a0800,#2d1000,#1a0500);border-bottom:2px solid var(--orange);padding:10px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.brand-logo img{height:44px;width:auto}
+.brand-info{text-align:right}
+.brand-tagline{font-size:10px;color:var(--orange);letter-spacing:1px;text-transform:uppercase;font-weight:600}
+.brand-contact{font-size:11px;color:#7fa88a;margin-top:2px}
+.brand-contact a{color:#4ade80;text-decoration:none}
+#app-header{position:sticky;top:0;z-index:100;background:var(--bg);border-bottom:1px solid var(--border);padding:10px 16px;display:flex;align-items:center;gap:12px}
+.app-logo{display:flex;align-items:center;gap:8px;flex:1}
+.logo-badge{background:linear-gradient(135deg,#22c55e,#16a34a);color:#fff;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:13px;padding:3px 8px;border-radius:6px}
+.logo-text{font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:16px}
+.header-stats{display:flex;gap:6px}
+.hstat{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:4px 10px;font-family:'DM Mono',monospace;font-size:12px;color:#7fa88a}
+.hstat span{color:#22c55e;font-weight:500}
+#main{padding:16px;max-width:800px;margin:0 auto;width:100%}
+.exam-banner{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius-lg);padding:14px 16px;margin-bottom:16px}
+.eb-title{font-family:'Barlow Condensed',sans-serif;font-size:17px;font-weight:700;margin-bottom:6px}
+.eb-row{display:flex;gap:16px;flex-wrap:wrap;font-size:12px;color:#4a7a54;margin-bottom:8px}
+.level-path{display:flex;align-items:center;gap:6px;flex-wrap:wrap;font-size:11px;padding:8px 12px;background:rgba(34,197,94,.06);border:1px solid rgba(34,197,94,.2);border-radius:8px}
+.path-step{padding:3px 10px;border-radius:10px;font-weight:600}
+.path-step.current{background:#22c55e;color:#000}
+.path-step.future{background:var(--bg3);color:#4a7a54;border:1px solid var(--border)}
+.path-arrow{color:#4a7a54}
+.prog-wrap{margin-bottom:16px}
+.prog-track{height:4px;background:var(--bg3);border-radius:4px;overflow:hidden;margin-bottom:6px}
+.prog-fill{height:100%;background:linear-gradient(90deg,#22c55e,#4ade80);border-radius:4px;transition:width .4s}
+.prog-meta{display:flex;justify-content:space-between;font-size:12px;color:#4a7a54}
+.filter-scroll{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;margin-bottom:16px;scrollbar-width:none}
+.filter-scroll::-webkit-scrollbar{display:none}
+.ftab{flex-shrink:0;padding:6px 14px;border-radius:20px;font-size:12px;font-weight:600;cursor:pointer;border:1px solid rgba(255,255,255,0.14);color:#7fa88a;background:transparent;font-family:'Barlow',sans-serif}
+.ftab.active{background:#22c55e;color:#000;border-color:#22c55e}
+.ftab.done-tab{border-color:#60a5fa;color:#60a5fa}
+.ftab.warn-tab{border-color:#f87171;color:#f87171}
+.q-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius-lg);padding:18px 18px 14px;margin-bottom:12px}
+.q-header{display:flex;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap}
+.q-num{font-family:'DM Mono',monospace;font-size:11px;color:#4a7a54;background:var(--bg3);padding:2px 8px;border-radius:5px}
+.sec-tag{font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;padding:2px 9px;border-radius:5px}
+.q-text{font-size:15px;line-height:1.65;margin-bottom:12px}
+.options{display:flex;flex-direction:column;gap:7px}
+.opt{display:flex;align-items:flex-start;gap:10px;padding:10px 13px;border:1px solid var(--border);border-radius:var(--radius);cursor:pointer;font-size:13px;color:#7fa88a;background:var(--bg3);line-height:1.5}
+.opt:hover{border-color:#22c55e;color:#ddeedd}
+.opt.selected{border-color:#3b82f6;color:#60a5fa;background:rgba(59,130,246,.12)}
+.opt.correct{border-color:#22c55e;color:#4ade80;background:rgba(34,197,94,.1)}
+.opt.wrong{border-color:#DC2626;color:#f87171;background:rgba(239,68,68,.1)}
+.opt-letter{font-family:'DM Mono',monospace;font-size:11px;font-weight:500;min-width:18px;flex-shrink:0;margin-top:2px;color:#4a7a54}
+.opt.selected .opt-letter{color:#3b82f6}
+.opt.correct .opt-letter{color:#22c55e}
+.opt.wrong .opt-letter{color:#DC2626}
+.check-btn{margin-top:10px;padding:8px 18px;background:transparent;border:1px solid rgba(255,255,255,0.14);border-radius:8px;color:#7fa88a;font-size:13px;font-family:'Barlow',sans-serif;font-weight:500;cursor:pointer}
+.explanation{margin-top:10px;background:rgba(34,197,94,.05);border:1px solid rgba(34,197,94,.2);border-radius:var(--radius);padding:11px 14px;font-size:13px;color:#7fa88a;line-height:1.7}
+.explanation b{color:#4ade80;font-weight:600}
+#results-screen{display:none;padding:20px 0;text-align:center}
+.score-dial{width:130px;height:130px;border-radius:50%;margin:0 auto 16px;display:flex;flex-direction:column;align-items:center;justify-content:center;border:3px solid #22c55e;background:var(--bg2)}
+.score-num{font-family:'Barlow Condensed',sans-serif;font-size:38px;font-weight:700;color:#22c55e}
+.score-label{font-size:11px;color:#4a7a54;text-transform:uppercase}
+.result-title{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:700;margin-bottom:4px}
+.result-sub{font-size:13px;color:#7fa88a;margin-bottom:16px}
+.sec-results{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:20px 0;text-align:left}
+.sec-result-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:12px 14px}
+.src-label{font-size:11px;color:#4a7a54;margin-bottom:4px;font-weight:600;text-transform:uppercase}
+.src-score{font-family:'DM Mono',monospace;font-size:18px;font-weight:500}
+.src-bar{height:3px;background:var(--bg3);border-radius:3px;margin-top:8px;overflow:hidden}
+.src-bar-fill{height:100%;border-radius:3px;background:linear-gradient(90deg,#22c55e,#4ade80)}
+.btn-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px;justify-content:center}
+.btn{padding:10px 22px;border-radius:10px;font-size:14px;font-weight:600;font-family:'Barlow',sans-serif;cursor:pointer;border:none}
+.btn-primary{background:linear-gradient(135deg,#22c55e,#16a34a);color:#fff}
+.btn-secondary{background:var(--bg3);color:#7fa88a;border:1px solid rgba(255,255,255,0.14)}
+.empty{text-align:center;padding:40px 20px;color:#4a7a54;font-size:14px}
+#ftw-footer{background:linear-gradient(135deg,#1a0800,#2d1200);border-top:2px solid #F97316;padding:16px;text-align:center;margin-top:20px}
+.footer-logo img{height:36px;margin-bottom:8px}
+.footer-links{display:flex;justify-content:center;gap:16px;flex-wrap:wrap;font-size:12px}
+.footer-links a{color:#F97316;text-decoration:none}
+.footer-copy{font-size:11px;color:#4a7a54;margin-top:8px}
+.tag-saf{background:rgba(239,68,68,.2);color:#fca5a5}
+.tag-cd{background:rgba(139,92,246,.2);color:#c4b5fd}
+.tag-sec{background:rgba(20,184,166,.2);color:#5eead4}
+.tag-rcs{background:rgba(59,130,246,.2);color:#93c5fd}
+.tag-sl{background:rgba(34,197,94,.2);color:#86efac}
+.tag-asp{background:rgba(245,158,11,.2);color:#fcd34d}
+.tag-pc{background:rgba(249,115,22,.2);color:#fdba74}
+</style>
+</head>
+<body>
+<div id="brand-header">
+  <div class="brand-logo"><img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBAUEBAYFBQUGBgYHCQ4JCQgICRINDQoOFRIWFhUSFBQXGiEcFxgfGRQUHScdHyIjJSUlFhwpLCgkKyEkJST/2wBDAQYGBgkICREJCREkGBQYJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCT/wAARCAC0AZQDASIAAhEBAxEB/8QAHAABAAIDAQEBAAAAAAAAAAAAAAUGAwQHAggB/8QAURAAAQMDAQQDCgkJBQUJAAAAAQACAwQFEQYHEiExE0FRFBUWIlVhcZGT0RdWdIGUobGy0iMyQlNUZHOiwSU2UoSSNGJjs8MmJzNDdYLC4eL/xAAbAQEAAgMBAQAAAAAAAAAAAAAAAwQBAgUGB//EAD0RAAEDAgQDBQUFBwQDAAAAAAEAAgMEEQUSITFBUWETInGRwRQygeHwBhVSsdElQlNicpKhFoKi0jM08f/aAAwDAQACEQMRAD8A+qERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERa9xqjQ2+qqmtDjBE+QNPXgE4WHEAXKyASbBbCLnVs1zfrtXQ0UDLc2WY4aXscGg4z1E9i379qDU+nY4ZKvvS9szixvRNeSCBnjnC5DMbgfEZmhxaNzb5rpOwmZsgicRmOwursio9h1HqbUXT9xi1M6Hd3ula8ZznGMZ7FqXbWuoLNcJKGpZbnSxhpJjY4tORkcyEdjcDYhOQ7KeNvmgwmYyGEEZhwuuhoqpQ1urbjQRV0JswilZvtDxIHY86gaPaDfK2php446APme1jd6N2AScceKzLjUMQaXtcM22m/wDnqsR4VLJmDCDl312XSUVOvd41VYaMVdV3nfHviPEQeTk+nC1LHqrUeoKiSnpBbGPjZvkyseBjOOolbPxeJkogc12Y7C3zWG4ZI6MyhwyjjdXxFQb5q3Uen6tlLVttj3vjEgMTXkYyR1kdi37PdNV3yibWUxs7Y3OLQJA8HIOOrKMxeJ0pga12Ybi3zR2GSNjEpcMp43VvRc2ftEvNPVOhlioXGKQseGsdxwcHBz5l0hp3mg9oypqLEoasuEV7t3v9dFFVUMtMGmTjsv1ERX1TRERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERY6mnjq6eWnmbvRysLHjOMgjBWRFgi+hQG2oUHQaMsttq4qump5GzRHLSZnuA4Y5ErNqK22ivpGPvDmsggcXBzpTGASMcwRn0KF1jrmSwVPe+kpg+pMYeZZD4jQc4wBxJ4eZc6q7hc9QVrO6JZ6yoe7djYOPHsa0cB8y83XYnSUgdTQxhxO4AsL9ea9DRYbVVNqiWQgcDfW3Tkum2it0jYRL3DcKePpcb+9OXZxy5+lbldpOy3qpNfUQPkkla3LhK9uQBw4A9iitJaDjte5XXMNmrBxZHzZCf6u8/IdXaqOdaagyf7Un5n/D2+hayVopoGCthFjs0AaeNzbito6I1EzjRym43cTv4WHRdho6KnoaOOjgaWwxt3GtLiSB6Soem0NYaSeKeGmkbJE4PYTO84IOR1rm3hpqHypUfy+5PDTUPlSo/l9yhf8AaCheAHxE220GnhqpmYFWMvllAvvqdfHRddutpo71S9y1rDJFvB+A8tORy4hRkFrsGjy6sDu5BKBEXyyuc09eOOcclzXw01D5UqP5fcrZoG61uoX3Gmus7qyHomDo5QC3iTnhhTwYxTVc7Wsj752JA00vzuoJ8JqKWEue/uDcAnp0st+7T6MvdQyorq+CSRjOjBbO5vDJPIekqesVNbqW2xstT2vpSS5pbIXjJPHiVz3V2hZ7Rv1ttEk9EPGfHzfAP/k3z8x155qAsuoq+xT9NRTYa7i+N3Fj/SP6qu7FX0lUfaoQCf3gNT1vxCnbhbaqmBppSQOB28LcCuozaEsM80kz6WUvkeXuIneOJOT1qfAAAA5BROmNQx6kt3dbIXQuY/o3sJyA7APA9Y4qXXpKVsBb2sAADuIFrrz1S6YO7OYm7eZvZERFaVdERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERcj2muxqg/Jo/tcprZPTwPhrqoxMM7ZGxtkI4hpbkgKA2ouxqo/Jo/tcrD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3Fm7d1vK3LquXUmyS5s7sdPdbax8tFNSxiko+iG9IMbz8HiB2KUOitU22unqLFqOkpGVTIjMyak6Tx2RhmQSeRxn51fURtDC33Rb4lYfjlU83eQeFi1tuB2tbcKhUOz67troLlcb1BVVvfKKtncyAsa5jIywNAB4Hjz8yzXDZ1I7UtJdLXcG0lEKuOsqaJzCWPlafzmYPikgnKu6Lb2OK1rcb/FRnF6rNmzDa2wtbla1tOHLgq7rjTdZqa3UtPQ1VPTTU9UypDp4ukYd0OGC3r59fBVyn0RrKlmbNBe9PRSs4tfHZ2NcPQQuiotn0sb3Zze/iQtYMTmhj7JtiOrWnfxBVOvuhqrVd1fLeLme90URZS01MCwskI4yuPWR1Dl9eccmiLldo7HFf66juLbbLIZiYXDuqMsw3eGfzgcEnrwrqiGliJJI336rDcUqGta1psG7aDTQg28b68zruAoDwIsdNBUG3WuipKmSGSJkzY+LN5pGfrVFpNkV+o2QiO6WEui3d177ZvOyORJJ4ldZRayUUL7Xbty0/Jb0+MVUAIa69+YB28bqlU2z3u66T1+ppKO7STUkUJxCWbsjc7zxx4ZBHLlhbuidHyaQjraXpaWeCSXfhlEW7Pu9TZHcnY6jwVoRbNpYmuDwNefio5cSqJGGNzu6bacNNrDh8FCWKwzWm6XuslqGSsuNUJ42taQYwGBuD28lTrtsuvNddKqqjuVkeyaV0jTUWtrpME5w4jAJ8/WumIsSUkT2hrhoPVbQYpUQyGRhFyANgdBoNx0UDorTcmlbEy3TVTamTpHyuexm4wFxzhreoBTyIpmMaxoY3YKnPM+aR0shuSblERFuokRERERERFw/bFp693PWAnoLRcKuHuSJvSQU7ntyC/IyBz4hUfwL1T8Xbt9Ff7laNuNdPBrYRx1M0be4ojutlLR+c/qBXPDXzO51Mx9Mp968pWCPt3XB35/JfZMCjqTh8JaW2tyP/YKc8C9UfF66D007gngXqfyDcR6YioA1TjzmefS8r8MwPN2fS5VbR8j5j9F1+yqvxN/tP/ZT50bqUc7HXD0sA/qsFXpu92+nfU1dsqIIY+Lnvxgccdqhd9h/w/UgdGDkBgPzLBEfAHz+S2bFUX7zm2/pP/ZfU+zv+49k+SM+xWJVzZyc6FsZ/c2fYrGvYwf+JvgF8OxD/wBqX+p35lERFKqaIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIi0ayxWm4zdPW2uhqpcBu/NAx7sDqyRy4rB4Kae8hWr6JH7lKotSxp3ClE8gFg4+aivBTT3kK1fRI/cngpp7yFavokfuUqiZG8ln2iX8R8yorwU095CtX0SP3J4Kae8hWr6JH7lKomRvJPaJfxHzKxwU8NLCyCnijhijG6yONoa1o7AByWREWyiJvqURERYREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREX//2Q==" alt="Fire Tech West LLC"></div>
+  <div class="brand-info">
+    <div class="brand-tagline">Free Study Resource</div>
+    <div class="brand-contact"><a href="https://www.firetechwest.org" target="_blank">firetechwest.org</a> &middot; <a href="tel:5036812202">503-681-2202</a></div>
+  </div>
+</div>
+<header id="app-header">
+  <div class="app-logo">
+    <div class="logo-badge">NICET I</div>
+    <div class="logo-text">Water-Based Systems Layout</div>
+  </div>
+  <div class="header-stats">
+    <div class="hstat"><span id="hs-pct">0%</span></div>
+    <div class="hstat"><span id="hs-rem">105</span> left</div>
+  </div>
+</header>
+<main id="main">
+  <div id="exam-screen">
+    <div class="exam-banner">
+      <div class="eb-title">Level I &mdash; Water-Based Systems Layout</div>
+      <div class="eb-row"><span>105 questions / 150 min on actual exam</span><span>NFPA 13, 13R, 13D, 25 (open reference)</span></div>
+      <div class="level-path">
+        <span class="path-step current">Level I &larr; You are here</span>
+        <span class="path-arrow">&rarr;</span>
+        <span class="path-step future"><a href="https://mgarcia7667.github.io/NICET-L2-EXAM/" style="color:inherit;text-decoration:none">Level II</a></span>
+        <span class="path-arrow">&rarr;</span>
+        <span class="path-step future"><a href="https://mgarcia7667.github.io/NICET-GPP-EXAM/" style="color:inherit;text-decoration:none">Level III GPP</a></span>
+        <span class="path-arrow">&rarr;</span>
+        <span class="path-step future"><a href="https://mgarcia7667.github.io/NICET-HWS-EXAM/" style="color:inherit;text-decoration:none">Level III HWS</a></span>
+      </div>
+    </div>
+    <div class="prog-wrap">
+      <div class="prog-track"><div class="prog-fill" id="prog-fill" style="width:0%"></div></div>
+      <div class="prog-meta"><span id="prog-label">0 of 105 answered</span><span id="prog-score">Score: 0 / 0</span></div>
+    </div>
+    <div class="filter-scroll" id="filter-tabs"></div>
+    <div id="questions-container"></div>
+    <div class="btn-row" style="margin:20px 0 40px">
+      <button class="btn btn-primary" onclick="showResults()">View Results</button>
+      <button class="btn btn-secondary" onclick="resetExam()">Reset Exam</button>
+    </div>
+  </div>
+  <div id="results-screen">
+    <div class="score-dial" id="score-dial">
+      <div class="score-num" id="final-pct">0%</div>
+      <div class="score-label" id="final-label">Score</div>
+    </div>
+    <div class="result-title" id="result-title">Results</div>
+    <div class="result-sub" id="result-sub"></div>
+    <div class="sec-results" id="sec-results"></div>
+    <div class="btn-row">
+      <button class="btn btn-primary" onclick="backToExam()">Review Questions</button>
+      <button class="btn btn-secondary" onclick="resetExam()">Retake Exam</button>
+    </div>
+  </div>
+</main>
+<footer id="ftw-footer">
+  <div class="footer-logo"><img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBAUEBAYFBQUGBgYHCQ4JCQgICRINDQoOFRIWFhUSFBQXGiEcFxgfGRQUHScdHyIjJSUlFhwpLCgkKyEkJST/2wBDAQYGBgkICREJCREkGBQYJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCT/wAARCAC0AZQDASIAAhEBAxEB/8QAHAABAAIDAQEBAAAAAAAAAAAAAAUGAwQHAggB/8QAURAAAQMDAQQDCgkJBQUJAAAAAQACAwQFEQYHEiExE0FRFBUWIlVhcZGT0RdWdIGUobGy0iMyQlNUZHOiwSU2UoSSNGJjs8MmJzNDdYLC4eL/xAAbAQEAAgMBAQAAAAAAAAAAAAAAAwQBAgUGB//EAD0RAAEDAgQDBQUFBwQDAAAAAAEAAgMEEQUSITFBUWETInGRwRQygeHwBhVSsdElQlNicpKhFoKi0jM08f/aAAwDAQACEQMRAD8A+qERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERa9xqjQ2+qqmtDjBE+QNPXgE4WHEAXKyASbBbCLnVs1zfrtXQ0UDLc2WY4aXscGg4z1E9i379qDU+nY4ZKvvS9szixvRNeSCBnjnC5DMbgfEZmhxaNzb5rpOwmZsgicRmOwursio9h1HqbUXT9xi1M6Hd3ula8ZznGMZ7FqXbWuoLNcJKGpZbnSxhpJjY4tORkcyEdjcDYhOQ7KeNvmgwmYyGEEZhwuuhoqpQ1urbjQRV0JswilZvtDxIHY86gaPaDfK2php446APme1jd6N2AScceKzLjUMQaXtcM22m/wDnqsR4VLJmDCDl312XSUVOvd41VYaMVdV3nfHviPEQeTk+nC1LHqrUeoKiSnpBbGPjZvkyseBjOOolbPxeJkogc12Y7C3zWG4ZI6MyhwyjjdXxFQb5q3Uen6tlLVttj3vjEgMTXkYyR1kdi37PdNV3yibWUxs7Y3OLQJA8HIOOrKMxeJ0pga12Ybi3zR2GSNjEpcMp43VvRc2ftEvNPVOhlioXGKQseGsdxwcHBz5l0hp3mg9oypqLEoasuEV7t3v9dFFVUMtMGmTjsv1ERX1TRERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERY6mnjq6eWnmbvRysLHjOMgjBWRFgi+hQG2oUHQaMsttq4qump5GzRHLSZnuA4Y5ErNqK22ivpGPvDmsggcXBzpTGASMcwRn0KF1jrmSwVPe+kpg+pMYeZZD4jQc4wBxJ4eZc6q7hc9QVrO6JZ6yoe7djYOPHsa0cB8y83XYnSUgdTQxhxO4AsL9ea9DRYbVVNqiWQgcDfW3Tkum2it0jYRL3DcKePpcb+9OXZxy5+lbldpOy3qpNfUQPkkla3LhK9uQBw4A9iitJaDjte5XXMNmrBxZHzZCf6u8/IdXaqOdaagyf7Un5n/D2+hayVopoGCthFjs0AaeNzbito6I1EzjRym43cTv4WHRdho6KnoaOOjgaWwxt3GtLiSB6Soem0NYaSeKeGmkbJE4PYTO84IOR1rm3hpqHypUfy+5PDTUPlSo/l9yhf8AaCheAHxE220GnhqpmYFWMvllAvvqdfHRddutpo71S9y1rDJFvB+A8tORy4hRkFrsGjy6sDu5BKBEXyyuc09eOOcclzXw01D5UqP5fcrZoG61uoX3Gmus7qyHomDo5QC3iTnhhTwYxTVc7Wsj752JA00vzuoJ8JqKWEue/uDcAnp0st+7T6MvdQyorq+CSRjOjBbO5vDJPIekqesVNbqW2xstT2vpSS5pbIXjJPHiVz3V2hZ7Rv1ttEk9EPGfHzfAP/k3z8x155qAsuoq+xT9NRTYa7i+N3Fj/SP6qu7FX0lUfaoQCf3gNT1vxCnbhbaqmBppSQOB28LcCuozaEsM80kz6WUvkeXuIneOJOT1qfAAAA5BROmNQx6kt3dbIXQuY/o3sJyA7APA9Y4qXXpKVsBb2sAADuIFrrz1S6YO7OYm7eZvZERFaVdERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERcj2muxqg/Jo/tcprZPTwPhrqoxMM7ZGxtkI4hpbkgKA2ouxqo/Jo/tcrD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3Fm7d1vK3LquXUmyS5s7sdPdbax8tFNSxiko+iG9IMbz8HiB2KUOitU22unqLFqOkpGVTIjMyak6Tx2RhmQSeRxn51fURtDC33Rb4lYfjlU83eQeFi1tuB2tbcKhUOz67troLlcb1BVVvfKKtncyAsa5jIywNAB4Hjz8yzXDZ1I7UtJdLXcG0lEKuOsqaJzCWPlafzmYPikgnKu6Lb2OK1rcb/FRnF6rNmzDa2wtbla1tOHLgq7rjTdZqa3UtPQ1VPTTU9UypDp4ukYd0OGC3r59fBVyn0RrKlmbNBe9PRSs4tfHZ2NcPQQuiotn0sb3Zze/iQtYMTmhj7JtiOrWnfxBVOvuhqrVd1fLeLme90URZS01MCwskI4yuPWR1Dl9eccmiLldo7HFf66juLbbLIZiYXDuqMsw3eGfzgcEnrwrqiGliJJI336rDcUqGta1psG7aDTQg28b68zruAoDwIsdNBUG3WuipKmSGSJkzY+LN5pGfrVFpNkV+o2QiO6WEui3d177ZvOyORJJ4ldZRayUUL7Xbty0/Jb0+MVUAIa69+YB28bqlU2z3u66T1+ppKO7STUkUJxCWbsjc7zxx4ZBHLlhbuidHyaQjraXpaWeCSXfhlEW7Pu9TZHcnY6jwVoRbNpYmuDwNefio5cSqJGGNzu6bacNNrDh8FCWKwzWm6XuslqGSsuNUJ42taQYwGBuD28lTrtsuvNddKqqjuVkeyaV0jTUWtrpME5w4jAJ8/WumIsSUkT2hrhoPVbQYpUQyGRhFyANgdBoNx0UDorTcmlbEy3TVTamTpHyuexm4wFxzhreoBTyIpmMaxoY3YKnPM+aR0shuSblERFuokRERERERFw/bFp693PWAnoLRcKuHuSJvSQU7ntyC/IyBz4hUfwL1T8Xbt9Ff7laNuNdPBrYRx1M0be4ojutlLR+c/qBXPDXzO51Mx9Mp968pWCPt3XB35/JfZMCjqTh8JaW2tyP/YKc8C9UfF66D007gngXqfyDcR6YioA1TjzmefS8r8MwPN2fS5VbR8j5j9F1+yqvxN/tP/ZT50bqUc7HXD0sA/qsFXpu92+nfU1dsqIIY+Lnvxgccdqhd9h/w/UgdGDkBgPzLBEfAHz+S2bFUX7zm2/pP/ZfU+zv+49k+SM+xWJVzZyc6FsZ/c2fYrGvYwf+JvgF8OxD/wBqX+p35lERFKqaIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIi0ayxWm4zdPW2uhqpcBu/NAx7sDqyRy4rB4Kae8hWr6JH7lKotSxp3ClE8gFg4+aivBTT3kK1fRI/cngpp7yFavokfuUqiZG8ln2iX8R8yorwU095CtX0SP3J4Kae8hWr6JH7lKomRvJPaJfxHzKxwU8NLCyCnijhijG6yONoa1o7AByWREWyiJvqURERYREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREX//2Q==" alt="Fire Tech West LLC"></div>
+  <div class="footer-links">
+    <a href="https://www.firetechwest.org" target="_blank">firetechwest.org</a>
+    <a href="tel:5036812202">503-681-2202</a>
+    <a href="https://mgarcia7667.github.io/NICET-GPP-EXAM/" target="_blank">Level III GPP &rarr;</a>
+    <a href="https://mgarcia7667.github.io/NICET-HWS-EXAM/" target="_blank">Level III HWS &rarr;</a>
+  </div>
+  <div class="footer-copy">&copy; 2026 Fire Tech West LLC &middot; Free NICET Study Resource &middot; Not affiliated with NICET</div>
+</footer>
+<script>
+// NICET Level I — Water-Based Systems Layout
+// Exam: 105 questions / 150 minutes
+// Content Outline 2024 (Updated July 8, 2024)
+// References: NFPA 13, 13R, 13D, 14, 20, 22, 24, 25, 72, IBC
+
+const SECTIONS = [
+  { id: 'saf', label: 'Safety',                     pct: '1–7%',   tagClass: 'tag-saf'  },
+  { id: 'cd',  label: 'Contract Documents',          pct: '5–15%',  tagClass: 'tag-cd'   },
+  { id: 'sec', label: 'Survey Existing Conditions',  pct: '5–15%',  tagClass: 'tag-sec'  },
+  { id: 'rcs', label: 'Research Codes & Standards',  pct: '5–15%',  tagClass: 'tag-rcs'  },
+  { id: 'sl',  label: 'System Layout',               pct: '53–63%', tagClass: 'tag-sl'   },
+  { id: 'asp', label: 'Assemble Submittal Packages', pct: '1–10%',  tagClass: 'tag-asp'  },
+  { id: 'pc',  label: 'Project Correspondences',     pct: '1–10%',  tagClass: 'tag-pc'   }
+];
+
+const QUESTIONS = [
+
+  // ── 1.1 SAFETY (1–7%) — 6 questions ──────────────────────────────────────
+  {
+    s: 'saf',
+    t: 'Before beginning work in a ceiling space, a fire sprinkler technician notices a posted sign indicating asbestos-containing materials may be present. The correct action is to:',
+    o: ['Continue working — asbestos is only dangerous if disturbed heavily', 'Stop work immediately, notify the supervisor, and do not enter until clearance is provided by a certified professional', 'Wear a standard dust mask and proceed carefully', 'Take a photo and continue — document the finding for the close-out package'],
+    a: 1,
+    e: '<b>Jobsite Safety (OSHA):</b> Asbestos-containing materials (ACM) require certified abatement assessment before any work that could disturb them. A standard dust mask provides no protection against asbestos fibers. Stopping work and notifying supervision is the only correct action. This protects the technician from serious long-term health risks.'
+  },
+  {
+    s: 'saf',
+    t: 'A fire sprinkler installer is working on a ladder at 12 feet while threading pipe. Per OSHA standards, fall protection is required when working at heights above:',
+    o: ['4 feet in general industry', '6 feet in construction', '10 feet on any worksite', 'Fall protection is only required above 15 feet for pipe work'],
+    a: 1,
+    e: '<b>OSHA 29 CFR 1926.502:</b> In construction environments, fall protection is required at heights of 6 feet or more above a lower level. Fire sprinkler installation is classified as construction work. At 12 feet, fall protection (guardrails, safety nets, or personal fall arrest systems) is required.'
+  },
+  {
+    s: 'saf',
+    t: 'When using a powder-actuated fastening tool to attach pipe hangers to a concrete ceiling, which personal protective equipment (PPE) is required as a minimum?',
+    o: ['Safety glasses only', 'Hard hat only', 'Safety glasses, hearing protection, and hard hat', 'No PPE is required for powder-actuated tools under 10 feet'],
+    a: 2,
+    e: '<b>OSHA PPE Requirements:</b> Powder-actuated tools produce loud impulse noise (hearing protection required), flying debris and concrete chips (eye protection required), and risk of falling hardware (hard hat required). All three must be worn simultaneously. Powder-actuated tools are among the most hazardous tools on a jobsite.'
+  },
+  {
+    s: 'saf',
+    t: 'Before cutting into an existing sprinkler system pipe for a tie-in, the technician must first:',
+    o: ['Open the inspector\'s test valve to bleed pressure', 'Ensure the system control valve is closed and locked/tagged out, and water is drained from the affected section', 'Only notify the building owner — no system shutdown is required for small tie-ins', 'The system can remain pressurized if the tie-in is 2" or smaller'],
+    a: 1,
+    e: '<b>Lockout/Tagout (LOTO) / NFPA 25:</b> Before cutting into any pressurized piping, the system control valve must be closed, locked, and tagged out per OSHA LOTO procedures. The affected section must be drained. Cutting into a pressurized sprinkler pipe can result in serious injury from high-pressure water discharge.'
+  },
+  {
+    s: 'saf',
+    t: 'A fire sprinkler technician notices a co-worker is not wearing a hard hat in a designated hard hat area. The correct response is to:',
+    o: ['Ignore it — hard hat use is each person\'s personal choice', 'Report it to the supervisor or ask the co-worker to put on the hard hat', 'Only intervene if the co-worker is working directly under suspended loads', 'Take a photo for safety documentation and continue working'],
+    a: 1,
+    e: '<b>Jobsite Safety Culture:</b> All workers share responsibility for enforcing safety rules on the jobsite. A designated hard hat area means overhead hazards are present for everyone in that area. Politely asking the co-worker to put on their hard hat, or notifying a supervisor, is the correct and professional response.'
+  },
+  {
+    s: 'saf',
+    t: 'When working in a confined space such as a crawl space or mechanical room with limited ventilation, what must be done before entry?',
+    o: ['Entry is permitted if the space is less than 4 feet deep', 'Atmospheric testing for oxygen levels and hazardous gases must be performed, and a permit obtained if required', 'Wear a respirator and enter — no testing is needed for spaces under 100 square feet', 'Confined space rules only apply to underground spaces'],
+    a: 1,
+    e: '<b>OSHA 29 CFR 1910.146:</b> Permit-required confined spaces must be tested for oxygen content, flammable gases, and toxic air contaminants before entry. A written permit, attendant, and rescue plan are required. Many mechanical rooms and crawl spaces qualify as permit-required confined spaces. Failure to follow confined space procedures is a leading cause of worker fatalities.'
+  },
+
+  // ── 1.2 CONTRACT DOCUMENTS (5–15%) — 10 questions ────────────────────────
+  {
+    s: 'cd',
+    t: 'On a set of construction drawings, which sheet type would show the overall building layout, room dimensions, door and window locations, and ceiling heights most relevant to sprinkler layout?',
+    o: ['Structural drawings (S-sheets)', 'Architectural floor plan drawings (A-sheets)', 'Mechanical/plumbing drawings (M or P-sheets)', 'Civil site plan drawings (C-sheets)'],
+    a: 1,
+    e: '<b>Construction Drawing Types:</b> Architectural floor plan drawings (A-sheets) show room layouts, dimensions, ceiling heights, and occupancy information most useful for initial sprinkler layout. Structural drawings show beam and column locations (also needed), mechanical drawings show HVAC (coordination needed), and civil drawings show site utilities.'
+  },
+  {
+    s: 'cd',
+    t: 'In construction documents, a specification section titled "Fire Suppression" would most likely contain:',
+    o: ['The architectural floor plan dimensions', 'Material requirements, installation standards, testing procedures, and approved manufacturers for the sprinkler system', 'The structural engineer\'s beam loading calculations', 'The building permit application number'],
+    a: 1,
+    e: '<b>Project Specifications:</b> The Fire Suppression specification section (typically CSI Division 21) contains material standards, approved product lists, installation requirements, testing and commissioning procedures, and warranty requirements. A Level I technician reads specifications to understand exactly what materials and methods are required on that specific project.'
+  },
+  {
+    s: 'cd',
+    t: 'When reviewing bid documents for a fire sprinkler project, which document describes the overall scope of work and special requirements that apply across all trades?',
+    o: ['The shop drawing submittal log', 'The Division 01 General Requirements / Special Conditions of the specifications', 'The mechanical engineer\'s design narrative', 'The AHJ permit application'],
+    a: 1,
+    e: '<b>Division 01 — General Requirements:</b> The General Requirements section of the specifications covers project-wide rules including submittal procedures, testing requirements, coordination meetings, schedule requirements, and special conditions that apply to all contractors. A Level I technician should read this section early to understand project-specific rules before beginning any work.'
+  },
+  {
+    s: 'cd',
+    t: 'A project specification states that all sprinkler heads in finished areas must be "semi-recessed pendent type with white cover plates." The fire sprinkler contractor wants to use an exposed pendent instead because it is less expensive. This substitution:',
+    o: ['Is acceptable — all sprinklers perform the same function', 'Requires a formal substitution request submitted to the architect/engineer for approval before use', 'Is acceptable if the AHJ approves it at inspection', 'Can be made at the technician\'s discretion in the field'],
+    a: 1,
+    e: '<b>Contract Compliance:</b> Substitutions from specified products require a formal substitution request submitted to the architect or engineer of record for written approval BEFORE installation. Installing a different product without approval can result in rejection, required replacement at the contractor\'s expense, and contract disputes.'
+  },
+  {
+    s: 'cd',
+    t: 'On a construction drawing, a dashed line typically represents:',
+    o: ['A wall that must be demolished', 'A hidden element above or below the cut plane — such as a beam above or a footing below', 'An electrical conduit run', 'The property boundary line'],
+    a: 1,
+    e: '<b>Drawing Conventions:</b> Dashed lines in architectural and structural drawings represent hidden elements — items that exist but are above or below the plane of the drawing cut. In reflected ceiling plans, dashed lines often show structural beams above the ceiling. Understanding standard drafting conventions is fundamental for reading construction documents.'
+  },
+  {
+    s: 'cd',
+    t: 'What does the term "RFI" stand for in construction document communication?',
+    o: ['Required Field Inspection', 'Request for Information', 'Revised Fire Installation', 'Reference for Implementation'],
+    a: 1,
+    e: '<b>RFI — Request for Information:</b> An RFI is a formal written request from a contractor to the design team asking for clarification on the construction documents. RFIs are used when drawings are unclear, conflicting, or missing information. All RFIs must be documented in writing — verbal clarifications are not sufficient for contract purposes.'
+  },
+  {
+    s: 'cd',
+    t: 'A drawing note reads "1/4" = 1\'-0"." This means:',
+    o: ['Every quarter inch on the drawing equals one inch in the field', 'Every quarter inch on the drawing equals one foot in the field', 'The drawing is drawn at full scale', 'The drawing uses metric dimensions'],
+    a: 1,
+    e: '<b>Drawing Scale:</b> The scale 1/4" = 1\'−0" means that one-quarter inch on paper represents one foot in the actual building. This is a common architectural scale. To find the real dimension of something on the drawing, measure it with a scale ruler and multiply: a 3-inch dimension on paper at this scale = 3 × 4 = 12 feet in the field.'
+  },
+  {
+    s: 'cd',
+    t: 'When reviewing a fire sprinkler scope of work document, a technician finds an item labeled "Allowance: $5,000 for fire sprinkler work in future tenant space." This means:',
+    o: ['The contractor must complete $5,000 of work in the tenant space', 'A budget placeholder has been included — actual work and cost will be determined later when scope is defined', 'The AHJ has pre-approved $5,000 of work', 'The owner has already paid for this work in advance'],
+    a: 1,
+    e: '<b>Contract Allowances:</b> An allowance is a budget placeholder in a contract for work whose full scope is not yet defined. The contractor holds this money in the contract but does not perform the work until a specific direction is given. Allowances are common in fire sprinkler work for future tenant improvements where the layout is not yet known.'
+  },
+  {
+    s: 'cd',
+    t: 'A fire sprinkler plan shows a symbol "SP-1" next to a sprinkler head. Where would you find the definition of what SP-1 means?',
+    o: ['In the NFPA 13 glossary', 'In the drawing\'s legend or symbol schedule', 'In the project specifications Division 01', 'SP-1 is a universal standard symbol — no legend is needed'],
+    a: 1,
+    e: '<b>Drawing Legends:</b> Symbols used on construction drawings are defined in the drawing\'s legend or symbol schedule, typically found on the first sheet of the drawing set or the first page of the sprinkler drawings. "SP-1" likely refers to a specific sprinkler type (e.g., semi-recessed pendent with specific temperature rating) as defined by the designer for that project.'
+  },
+  {
+    s: 'cd',
+    t: 'The phrase "work shown on drawings but not described in specifications, or described in specifications but not shown on drawings, shall be considered as:" (per standard contract language)',
+    o: ['Optional work that requires a change order to include', 'Part of the required scope of work — both drawings and specifications are contract documents', 'The responsibility of a different contractor', 'An error requiring an RFI before proceeding'],
+    a: 1,
+    e: '<b>Contract Document Hierarchy:</b> Both drawings and specifications are contract documents of equal importance. Work shown in either is required to be performed. If something appears in one but not the other, it is still in scope. Discrepancies between drawings and specs require an RFI — but absence from one document does not exclude the work.'
+  },
+
+  // ── 1.3 SURVEY EXISTING CONDITIONS (5–15%) — 10 questions ────────────────
+  {
+    s: 'sec',
+    t: 'When performing a field survey of an existing building for a sprinkler system retrofit, what is the FIRST thing a Level I technician should do before starting measurements?',
+    o: ['Begin measuring all room dimensions immediately', 'Review the existing architectural drawings and understand the scope of work before entering the building', 'Install temporary pipe supports to identify hanger locations', 'Photograph only the areas where sprinklers will be added'],
+    a: 1,
+    e: '<b>Field Survey Best Practice:</b> Before beginning any field measurements, a technician should review available drawings to understand the building layout, identify areas of concern, and plan the survey. Going in without preparation leads to missed measurements, return trips, and errors. Understanding the scope before the survey makes the field work efficient and accurate.'
+  },
+  {
+    s: 'sec',
+    t: 'During a field survey, the technician notices the existing ceiling height is 11\'6" in most of the building but drops to 9\'0" in one corner room. This information is important because:',
+    o: ['It affects the type of sprinkler required and the deflector-to-ceiling distance', 'Lower ceilings always require additional sprinklers per NFPA 13', 'It is not relevant — sprinklers are placed the same way regardless of ceiling height', 'It affects only the pipe size, not sprinkler placement'],
+    a: 0,
+    e: '<b>Ceiling Height Survey:</b> Ceiling height directly affects sprinkler type selection, deflector positioning (1" to 12" below ceiling for pendents), and spacing requirements. Different ceiling heights in adjacent spaces may require different sprinkler temperatures or types. Accurately recording all ceiling heights is one of the most important parts of a field survey.'
+  },
+  {
+    s: 'sec',
+    t: 'A technician is surveying a building and finds that some walls shown on the architectural drawings have been removed and new walls added since the drawings were issued. The technician should:',
+    o: ['Use the original drawings — field changes are the architect\'s problem to update', 'Document the actual as-built conditions in the field notes and notify the designer of the discrepancy', 'Ignore the changes if they are in areas outside the sprinkler layout', 'Ask the building owner to update the drawings before continuing'],
+    a: 1,
+    e: '<b>As-Built Conditions:</b> Construction drawings are often not updated to reflect changes made during or after original construction. A Level I technician must document what actually exists in the field, not what the drawings show. Discrepancies between drawings and field conditions must be reported to the designer so the sprinkler layout is based on accurate information.'
+  },
+  {
+    s: 'sec',
+    t: 'When surveying for beam and column locations in a building with a suspended ceiling, how should a Level I technician identify structural members above the ceiling?',
+    o: ['Assume standard structural grid based on building age and type', 'Access the ceiling space directly, or review structural drawings and verify with spot checks in the field', 'Only columns need to be located — beams do not affect sprinkler layout', 'Structural members are the structural engineer\'s responsibility — the sprinkler tech does not need to identify them'],
+    a: 1,
+    e: '<b>Structural Survey:</b> Beams and columns above suspended ceilings directly affect sprinkler placement — they create obstruction zones that require additional sprinklers or specific positioning. The technician must access ceiling spaces or verify structural drawings in the field to accurately locate all obstructions before completing the sprinkler layout.'
+  },
+  {
+    s: 'sec',
+    t: 'During a survey of an existing wet pipe sprinkler system, a technician finds a sprinkler with a heavy white deposit around the deflector and orifice. This most likely indicates:',
+    o: ['Normal aging — white deposits are cosmetic only', 'Possible lime or mineral deposit that could restrict the orifice — should be documented and reported', 'The sprinkler was recently painted white — it must be replaced', 'The sprinkler is a high-temperature model — white color-coding is standard'],
+    a: 1,
+    e: '<b>Sprinkler Condition Survey (NFPA 25):</b> Mineral deposits around a sprinkler orifice can restrict water flow during a fire event. This condition must be documented and reported to the responsible party. Per NFPA 25, sprinklers showing obstructions or foreign material at the orifice should be replaced or tested. A Level I technician\'s job is to identify and document — not make the repair decision alone.'
+  },
+  {
+    s: 'sec',
+    t: 'A Level I technician is performing a flow test of the water supply per NFPA 291. The static pressure reading is taken when:',
+    o: ['Water is flowing at maximum capacity from the flow hydrant', 'No water is flowing from any hydrant — all hydrants closed', 'The residual hydrant is flowing at 500 gpm', 'The system demand is being simulated through the test header'],
+    a: 1,
+    e: '<b>NFPA 291 Flow Test:</b> Static pressure is measured when NO water is flowing anywhere in the test setup. It represents the maximum available pressure in the water main with no demand. Once flow begins at the flow hydrant, the pressure reading at the residual hydrant drops — that reduced reading is the residual pressure. Both readings are needed to characterize the water supply.'
+  },
+  {
+    s: 'sec',
+    t: 'When documenting field conditions for a sprinkler system survey, which of the following should be recorded?',
+    o: ['Only the room dimensions and ceiling heights', 'Room dimensions, ceiling heights, structural obstructions, existing utility locations, wall construction type, and any existing fire protection components', 'Only the locations where new sprinklers will be installed', 'Only conditions that differ from the architectural drawings'],
+    a: 1,
+    e: '<b>Comprehensive Field Survey:</b> A complete survey records all information relevant to the sprinkler design: room dimensions, ceiling heights, structural elements (beams, columns, joists), HVAC ducts and equipment, existing plumbing, electrical panels, wall types, and any existing fire protection. Incomplete surveys lead to design errors and expensive field changes during installation.'
+  },
+  {
+    s: 'sec',
+    t: 'During a field survey, a technician finds a 24-inch wide HVAC duct running across the ceiling 18 inches below the deck. Per NFPA 13, this duct is considered:',
+    o: ['Not an obstruction — ducts under 36 inches wide are ignored', 'A potential obstruction that must be evaluated for its effect on sprinkler coverage', 'An obstruction only if it runs parallel to the branch lines', 'Not relevant — HVAC ducts are always below sprinklers'],
+    a: 1,
+    e: '<b>NFPA 13 §10.2.6:</b> Any obstruction that could intercept or block sprinkler discharge must be evaluated. A 24-inch wide duct running below the ceiling can create a shadow zone where water cannot reach. The technician must document the duct location, dimensions, and orientation so the designer can determine if additional sprinklers are needed below or around it.'
+  },
+  {
+    s: 'sec',
+    t: 'A technician is assisting with a coordination survey on a new construction project. The purpose of this survey is to:',
+    o: ['Inspect completed sprinkler work for code compliance', 'Verify that the sprinkler pipe routing does not conflict with other building systems such as HVAC, electrical, plumbing, and structural elements', 'Obtain the final occupancy permit from the AHJ', 'Perform the annual NFPA 25 inspection'],
+    a: 1,
+    e: '<b>Coordination Survey:</b> A coordination survey (also called MEP coordination) verifies that the planned routing of sprinkler pipe does not physically conflict with HVAC ducts, electrical conduit, plumbing, structural beams, or other systems. Conflicts found during coordination are resolved on paper before installation — preventing costly field changes and rework.'
+  },
+  {
+    s: 'sec',
+    t: 'When recording the pipe size and material of an existing sprinkler system during a survey, the technician stamps "1½" SCH 40" on the field notes. What does "SCH 40" mean?',
+    o: ['The pipe is schedule 40 — a standard wall thickness designation for steel pipe', 'The pipe was installed in 1940', 'Schedule 40 means the pipe is galvanized', 'SCH 40 is a manufacturer\'s brand designation'],
+    a: 0,
+    e: '<b>Pipe Schedule Designation:</b> "Schedule" refers to the wall thickness of steel pipe. Schedule 40 is the standard wall thickness most commonly used for fire sprinkler systems. Schedule 10 is lighter (thinner walls). Schedule 80 is heavier. Knowing pipe schedule is important because wall thickness affects the pipe\'s inside diameter, which affects hydraulic calculations.'
+  },
+
+  // ── 1.4 RESEARCH CODES & STANDARDS (5–15%) — 10 questions ────────────────
+  {
+    s: 'rcs',
+    t: 'NFPA 13 is the primary installation standard for fire sprinkler systems. What does NFPA stand for?',
+    o: ['National Fire Prevention Agency', 'National Fire Protection Association', 'National Federal Protection Authority', 'North American Fire Professionals Association'],
+    a: 1,
+    e: '<b>NFPA — National Fire Protection Association:</b> NFPA is the nonprofit organization that develops and publishes fire safety codes and standards used throughout the United States and internationally. NFPA 13 (sprinkler installation), NFPA 14 (standpipes), NFPA 20 (fire pumps), NFPA 25 (inspection/testing/maintenance), and NFPA 72 (fire alarm) are all critical references for fire sprinkler technicians.'
+  },
+  {
+    s: 'rcs',
+    t: 'NFPA 13R applies to automatic sprinkler systems in which type of occupancy?',
+    o: ['Commercial office buildings up to 4 stories', 'Residential occupancies up to 4 stories above grade', 'Industrial and warehouse occupancies', 'Any building under 10,000 square feet'],
+    a: 1,
+    e: '<b>NFPA 13R Scope §1.1:</b> NFPA 13R applies to residential occupancies (apartments, condominiums, hotels, dormitories) up to and including four stories above grade. It provides a simplified installation standard for residential use with fewer requirements than full NFPA 13. Understanding which standard applies to each project type is fundamental for Level I technicians.'
+  },
+  {
+    s: 'rcs',
+    t: 'NFPA 13D applies to which specific occupancy type?',
+    o: ['One- and two-family dwellings and manufactured homes', 'Dormitories and assisted living facilities', 'All residential buildings under 4 stories', 'Commercial buildings under 3,000 square feet'],
+    a: 0,
+    e: '<b>NFPA 13D Scope §1.1:</b> NFPA 13D applies exclusively to one- and two-family dwellings and manufactured homes. It is the most simplified residential sprinkler standard, allowing fewer design requirements than 13R or 13. A Level I technician working on residential projects must know which of the three standards (13, 13R, or 13D) applies to each project.'
+  },
+  {
+    s: 'rcs',
+    t: 'The "Authority Having Jurisdiction" or AHJ in fire protection refers to:',
+    o: ['The NFPA technical committee that writes the codes', 'The organization, office, or individual responsible for enforcing the requirements of a code, or approving equipment or procedures', 'The insurance company that underwrites the building', 'The National Institute of Standards and Technology (NIST)'],
+    a: 1,
+    e: '<b>NFPA Definition — AHJ:</b> The AHJ is typically the local fire marshal, building department, or fire inspector who has the legal authority to enforce fire codes in a jurisdiction. The AHJ reviews and approves sprinkler system submittals, performs inspections, and issues permits. Building a good working relationship with the AHJ is important for every fire sprinkler project.'
+  },
+  {
+    s: 'rcs',
+    t: 'Per NFPA 13, which of the following is classified as a Light Hazard occupancy?',
+    o: ['Woodworking shop', 'Office building', 'Auto repair garage', 'Paint spray booth'],
+    a: 1,
+    e: '<b>NFPA 13 §5.2 — Light Hazard:</b> Light Hazard occupancies include offices, churches, schools, and residential uses — areas with low combustible fuel loads and slow fire development. Woodworking shops are Extra Hazard Group 1; auto repair garages are Ordinary Hazard Group 2; paint spray booths are Extra Hazard Group 2. Hazard classification determines the design density and area.'
+  },
+  {
+    s: 'rcs',
+    t: 'The International Building Code (IBC) is related to NFPA 13 in fire sprinkler design because:',
+    o: ['The IBC replaces NFPA 13 for all new construction', 'The IBC determines when a building must have a sprinkler system; NFPA 13 governs how the system is installed', 'They are the same document published by different organizations', 'NFPA 13 overrides the IBC in all fire protection matters'],
+    a: 1,
+    e: '<b>IBC vs. NFPA 13:</b> The IBC is a building code that determines when fire sprinkler protection is required based on occupancy, building height, area, and construction type. NFPA 13 is an installation standard that governs HOW the sprinkler system must be designed and installed once the IBC requires it. Both documents apply to most commercial fire sprinkler projects.'
+  },
+  {
+    s: 'rcs',
+    t: 'A technician is told the project requires compliance with "NFPA 13, 2022 edition." The previous project used the "2019 edition." Which edition governs the current project?',
+    o: ['The 2019 edition — always use the most recent edition you are trained on', 'The 2022 edition — the edition specified in the contract or adopted by the jurisdiction governs', 'Either edition may be used — the technician chooses the most favorable one', 'The edition does not matter — NFPA 13 requirements never change between editions'],
+    a: 1,
+    e: '<b>Code Edition:</b> The edition of NFPA 13 that governs a project is determined by the contract documents and the edition adopted by the local jurisdiction. NFPA 13 is updated every 3 years and requirements do change between editions. A Level I technician must use the correct edition as required — using the wrong edition can result in non-compliant work.'
+  },
+  {
+    s: 'rcs',
+    t: 'NFPA 25 is the standard that governs:',
+    o: ['Installation of new sprinkler systems', 'Inspection, testing, and maintenance of existing water-based fire protection systems', 'Design of fire pump assemblies', 'Water supply flow testing procedures'],
+    a: 1,
+    e: '<b>NFPA 25:</b> The Standard for the Inspection, Testing, and Maintenance of Water-Based Fire Protection Systems governs the ongoing care of existing systems after installation. It specifies required inspection frequencies, test procedures, and maintenance activities. Level I technicians working on existing systems or performing impairments must be familiar with NFPA 25 requirements.'
+  },
+  {
+    s: 'rcs',
+    t: 'Per NFPA 13, what is an "occupancy hazard classification" used to determine?',
+    o: ['The required fire-resistance rating of the building construction', 'The design density (gpm/ft²) and design area (ft²) required for the sprinkler system', 'The type of fire alarm system required in the building', 'The required number of exits from the building'],
+    a: 1,
+    e: '<b>NFPA 13 §5.1:</b> Occupancy hazard classifications (Light, Ordinary Groups 1 and 2, Extra Hazard Groups 1 and 2) directly determine the minimum design density and design area used for hydraulic calculations. Higher hazard = higher density required = more water needed. Correctly identifying the occupancy hazard classification is the first step in every sprinkler system design.'
+  },
+  {
+    s: 'rcs',
+    t: 'A fire sprinkler system is being designed for a new building. The local jurisdiction has adopted the 2021 IBC. Which document takes precedence if NFPA 13 (2022) conflicts with the 2021 IBC on a specific requirement?',
+    o: ['NFPA 13 always takes precedence over the IBC', 'The IBC always takes precedence over NFPA 13', 'The more stringent (more protective) requirement governs, per standard code adoption practice', 'The AHJ decides which document governs on a case-by-case basis'],
+    a: 2,
+    e: '<b>Code Conflict Resolution:</b> When two codes conflict, the more stringent (more protective) requirement generally governs, unless one code explicitly exempts the other. The AHJ has final authority to interpret conflicts. In practice, the designer and AHJ work together to resolve conflicts and the decision is documented. Understanding this hierarchy is important for all Level I technicians.'
+  },
+
+  // ── 1.5 SYSTEM LAYOUT (53–63%) — 55 questions ────────────────────────────
+  {
+    s: 'sl',
+    t: 'Per NFPA 13, what are the three main types of automatic sprinkler systems based on the contents of the pipe?',
+    o: ['Wet pipe, deluge, and foam systems', 'Wet pipe, dry pipe, and pre-action systems', 'Wet pipe, dry pipe, and deluge systems — pre-action is a subtype', 'Upright, pendent, and sidewall systems'],
+    a: 2,
+    e: '<b>NFPA 13 §8.1:</b> The three main system types are: (1) <b>Wet pipe</b> — pipes always filled with pressurized water, fastest response; (2) <b>Dry pipe</b> — pipes filled with pressurized air or nitrogen, used in freezing environments; (3) <b>Deluge</b> — all heads open simultaneously, used in high-hazard areas. Pre-action systems combine wet/dry features and are a fourth major type.'
+  },
+  {
+    s: 'sl',
+    t: 'A pendent sprinkler is installed with the deflector facing:',
+    o: ['Upward, toward the ceiling', 'Downward, away from the ceiling', 'Horizontally, parallel to the ceiling', 'At a 45-degree angle to optimize coverage'],
+    a: 1,
+    e: '<b>Sprinkler Orientation:</b> A pendent sprinkler hangs down from the pipe with the deflector facing downward toward the floor. Water discharges downward and outward from the deflector. Upright sprinklers face upward with the deflector above the orifice. Sidewall sprinklers are mounted on walls. Using the wrong orientation for the listed sprinkler type is a code violation.'
+  },
+  {
+    s: 'sl',
+    t: 'Per NFPA 13, what is the maximum spacing between standard spray sprinklers in a Light Hazard occupancy?',
+    o: ['12 feet', '15 feet', '18 feet', '20 feet'],
+    a: 1,
+    e: '<b>NFPA 13 §10.2.4.1.1:</b> The maximum spacing between any two sprinklers in Light Hazard occupancies is 15 feet. This same 15-foot maximum applies to Ordinary and Extra Hazard occupancies. However, the maximum area per sprinkler differs by occupancy: Light = 200 ft², Ordinary = 130 ft², Extra Hazard = 100 ft².'
+  },
+  {
+    s: 'sl',
+    t: 'What is the minimum distance a standard spray sprinkler must be located from a wall per NFPA 13?',
+    o: ['2 inches', '4 inches', '6 inches', '12 inches'],
+    a: 1,
+    e: '<b>NFPA 13 §10.2.5.1:</b> Sprinklers must be located a minimum of 4 inches from any wall. Additionally, no sprinkler may be more than half the maximum spacing (7.5 feet for standard 15-foot max) from a wall. Both the minimum wall distance (4 inches) and maximum wall distance (half spacing) must be satisfied in the layout.'
+  },
+  {
+    s: 'sl',
+    t: 'For a standard pendent sprinkler, the deflector must be located between what distances below a smooth, flat ceiling?',
+    o: ['½ inch to 6 inches', '1 inch to 12 inches', '2 inches to 18 inches', '4 inches to 24 inches'],
+    a: 1,
+    e: '<b>NFPA 13 §10.2.3.1:</b> Pendent sprinkler deflectors must be positioned between 1 inch and 12 inches below the ceiling. Ideal positioning is 1 to 4 inches for most installations. A deflector too close to the ceiling (less than 1") can be thermally shielded; too far (more than 12") reduces distribution effectiveness.'
+  },
+  {
+    s: 'sl',
+    t: 'What is the maximum area of coverage per sprinkler for a standard spray sprinkler in a Light Hazard occupancy?',
+    o: ['100 sq ft', '130 sq ft', '168 sq ft', '200 sq ft'],
+    a: 3,
+    e: '<b>NFPA 13 Table 10.2.4.1.1:</b> In Light Hazard occupancies, the maximum area per standard spray sprinkler is 200 sq ft. Ordinary Hazard = 130 sq ft; Extra Hazard = 100 sq ft. These are among the most fundamental values a Level I technician must know — they determine how many sprinklers are required per floor area.'
+  },
+  {
+    s: 'sl',
+    t: 'A room measuring 20 ft × 30 ft has a smooth, flat 9-foot ceiling in a Light Hazard office occupancy. Using standard spray pendents (max 200 ft², max 15-ft spacing, max 7.5 ft from walls), what is the minimum number of sprinklers needed?',
+    o: ['2 sprinklers', '3 sprinklers', '4 sprinklers', '6 sprinklers'],
+    a: 2,
+    e: '<b>Layout Calculation:</b> Area = 600 ft². At 200 ft²/sprinkler max: 600/200 = 3 minimum by area. BUT spacing check: the 30-ft dimension ÷ 15 ft max spacing requires at least 2 sprinklers (spaced at 15 ft with 7.5 ft to each wall). The 20-ft dimension: one centered sprinkler at 10 ft from each wall (≤7.5? No — 10 > 7.5). Need 2 sprinklers on 20-ft dimension too. Layout = 2×2 = <b>4 sprinklers</b>. Area check: 600/4 = 150 ft² ≤ 200 ft² ✓.'
+  },
+  {
+    s: 'sl',
+    t: 'Per NFPA 13, what is the minimum clearance between a sprinkler deflector and the top of storage?',
+    o: ['6 inches', '12 inches', '18 inches', '24 inches'],
+    a: 2,
+    e: '<b>NFPA 13 §10.2.8.1:</b> A minimum 18-inch clearance must be maintained between the sprinkler deflector and the top of any storage. This ensures the sprinkler\'s spray pattern is not blocked by stored goods and water can distribute properly to reach the fire. This is one of the most commonly violated field conditions and frequently tested.'
+  },
+  {
+    s: 'sl',
+    t: 'An upright sprinkler must be installed with the deflector:',
+    o: ['Below the pipe, facing down', 'Above the pipe, facing up', 'At the same level as the pipe centerline', 'Horizontally to one side of the pipe'],
+    a: 1,
+    e: '<b>Upright Sprinkler Installation:</b> Upright sprinklers are installed with the orifice pointing up and the deflector above the pipe, facing upward toward the ceiling. Water discharges upward, hits the deflector, and is redirected downward and outward in a hemispherical pattern. Installing an upright sprinkler in the pendent position (or vice versa) is a code violation.'
+  },
+  {
+    s: 'sl',
+    t: 'What is the purpose of a sprinkler\'s temperature rating?',
+    o: ['To indicate the maximum water pressure the sprinkler can withstand', 'To define the ambient temperature at which the sprinkler\'s thermal element will activate and release water', 'To specify the minimum water temperature required for proper distribution', 'To indicate the sprinkler\'s flow rate at rated pressure'],
+    a: 1,
+    e: '<b>Sprinkler Temperature Rating:</b> The temperature rating is the ambient air temperature at which the sprinkler\'s thermal element (fusible link or glass bulb) will activate and open. Ordinary-rated sprinklers (135°F–170°F) are used in normal room-temperature environments. Higher-rated sprinklers (Intermediate 175°F–225°F, High 250°F–300°F) are used near heat sources, skylights, or in high-temperature areas.'
+  },
+  {
+    s: 'sl',
+    t: 'A glass bulb sprinkler with an orange-colored liquid in the bulb has what temperature rating?',
+    o: ['135°F–170°F (Ordinary)', '175°F–225°F (Intermediate)', '250°F–300°F (High)', '325°F–375°F (Extra High)'],
+    a: 1,
+    e: '<b>NFPA 13 Table 6.2.4.1 — Bulb Colors:</b> Orange bulb = 135°F (Ordinary). Red bulb = 155°F (Ordinary). Yellow bulb = 175°F (Intermediate). Green bulb = 200°F (Intermediate). Blue bulb = 286°F (High). Purple/Mauve = 360°F (Extra High). Black = 440°F or 500°F. Knowing bulb colors lets technicians quickly verify the correct temperature rating is installed.'
+  },
+  {
+    s: 'sl',
+    t: 'Per NFPA 13, in which of the following locations would an Intermediate temperature rating sprinkler (175°F–225°F) most likely be required?',
+    o: ['A standard office area with 72°F ambient temperature', 'Within 18 inches of a skylight or heat-producing light fixture', 'A walk-in refrigerator', 'A covered parking garage with natural ventilation'],
+    a: 1,
+    e: '<b>NFPA 13 §6.2.4.1:</b> Intermediate temperature sprinklers are required in locations where the ambient temperature could be elevated above the ordinary range — including within 18 inches of skylights, near unit heaters, in attic spaces, and near heat-producing equipment. Using an ordinary-rated sprinkler near a heat source risks accidental activation.'
+  },
+  {
+    s: 'sl',
+    t: 'What is the K-factor of a sprinkler and how is it used?',
+    o: ['K-factor is the sprinkler\'s temperature rating — higher K = higher activation temperature', 'K-factor is a discharge coefficient — used in the formula Q = K√P to calculate flow (gpm) at a given pressure', 'K-factor is the maximum working pressure of the sprinkler in psi', 'K-factor is the area of coverage in square feet per sprinkler'],
+    a: 1,
+    e: '<b>K-Factor:</b> The K-factor is a discharge coefficient specific to each sprinkler orifice size. It is used in the formula <b>Q = K√P</b> where Q = flow in gpm and P = pressure in psi. Standard ½" orifice sprinklers have K = 5.6. Larger orifice (large-drop) sprinklers have K = 8.0, 11.2, or 14.0. The K-factor is one of the most fundamental hydraulic values.'
+  },
+  {
+    s: 'sl',
+    t: 'Using the formula Q = K√P, calculate the flow from a K=5.6 sprinkler at a pressure of 9 psi.',
+    o: ['16.8 gpm', '50.4 gpm', '11.2 gpm', '25.2 gpm'],
+    a: 0,
+    e: '<b>Q = K√P:</b> Q = 5.6 × √9 = 5.6 × 3.0 = <b>16.8 gpm</b>. The minimum operating pressure for standard spray sprinklers is 7 psi. At 7 psi: Q = 5.6 × √7 = 5.6 × 2.646 = 14.8 gpm. Knowing how to apply Q = K√P at common pressures is a core Level I skill tested frequently.'
+  },
+  {
+    s: 'sl',
+    t: 'What pressure (psi) is required at a K=5.6 sprinkler to achieve a flow of 22.4 gpm?',
+    o: ['7 psi', '16 psi', '22 psi', '44 psi'],
+    a: 1,
+    e: '<b>P = (Q/K)²:</b> P = (22.4 / 5.6)² = (4.0)² = <b>16 psi</b>. Being able to solve for both Q and P using the K-factor formula is required at Level I. Practice: Q = K√P → P = (Q/K)². These are the two most common rearrangements of the formula.'
+  },
+  {
+    s: 'sl',
+    t: 'Per NFPA 13, what is the minimum operating pressure for a standard spray pendent or upright sprinkler?',
+    o: ['5 psi', '7 psi', '10 psi', '15 psi'],
+    a: 1,
+    e: '<b>NFPA 13 §6.2.3.1:</b> The minimum operating pressure for standard spray sprinklers is <b>7 psi</b>. Below this pressure, the sprinkler\'s spray pattern breaks down and coverage is inadequate. All hydraulic calculations must demonstrate that even the most remote sprinkler receives at least 7 psi. This is one of the most frequently tested values on all NICET levels.'
+  },
+  {
+    s: 'sl',
+    t: 'Elevation pressure change in a water system is calculated as 0.433 psi per foot. A sprinkler is 20 feet above the water supply reference point. How much pressure is lost to elevation?',
+    o: ['4.33 psi', '8.66 psi', '12.99 psi', '20.00 psi'],
+    a: 1,
+    e: '<b>Elevation Pressure Loss:</b> ΔP = 0.433 × 20 ft = <b>8.66 psi</b>. This pressure must be added to the required sprinkler pressure when calculating the demand at the supply point. Water must overcome gravity to rise to an elevated sprinkler — every foot of elevation costs 0.433 psi. This calculation appears in virtually every hydraulic problem.'
+  },
+  {
+    s: 'sl',
+    t: 'In fire sprinkler hydraulics, the Hazen-Williams formula is used to calculate:',
+    o: ['The sprinkler flow rate at a given pressure', 'The friction loss per foot of pipe at a given flow rate', 'The elevation pressure change between two points', 'The minimum design density for an occupancy'],
+    a: 1,
+    e: '<b>Hazen-Williams Formula:</b> The Hazen-Williams formula (p = 4.52 × Q¹·⁸⁵ / C¹·⁸⁵ × d⁴·⁸⁷) calculates friction loss (psi per foot of pipe) based on pipe material (C-factor), flow rate (Q in gpm), and inside diameter (d in inches). This friction loss is multiplied by the equivalent pipe length to find the total pressure loss in a pipe segment.'
+  },
+  {
+    s: 'sl',
+    t: 'The Hazen-Williams C-factor for new steel pipe is typically:',
+    o: ['100', '120', '140', '150'],
+    a: 1,
+    e: '<b>Hazen-Williams C-Factors:</b> New steel pipe (black or galvanized) uses C = 120. CPVC plastic pipe uses C = 150. Older or corroded steel pipe may use C = 100 to account for rougher interior surfaces. Higher C values mean smoother pipe with less friction loss. Using the correct C-factor is critical for accurate hydraulic calculations.'
+  },
+  {
+    s: 'sl',
+    t: 'What is the inside diameter (ID) of a nominal 1" Schedule 40 steel pipe used in sprinkler systems?',
+    o: ['1.000 inches', '1.049 inches', '1.380 inches', '0.875 inches'],
+    a: 1,
+    e: '<b>Pipe Inside Diameter:</b> Nominal 1" Schedule 40 steel pipe has an inside diameter of <b>1.049 inches</b>. Note that "nominal" pipe sizes do NOT equal the actual inside diameter. Common IDs to know: ¾" = 0.824", 1" = 1.049", 1¼" = 1.380", 1½" = 1.610", 2" = 2.067", 2½" = 2.469", 3" = 3.068", 4" = 4.026". The ID (not nominal size) is used in all hydraulic calculations.'
+  },
+  {
+    s: 'sl',
+    t: 'Per NFPA 13, fitting equivalent lengths are used in hydraulic calculations to account for:',
+    o: ['The weight of fittings when calculating hanger loads', 'The additional pressure loss caused by fittings (elbows, tees, reducers) expressed as an equivalent length of straight pipe', 'The time required to install each fitting type', 'The required test pressure for each fitting'],
+    a: 1,
+    e: '<b>NFPA 13 Annex B — Equivalent Lengths:</b> Fittings create turbulence and additional friction loss. Rather than using a complex formula for each fitting, NFPA 13 Annex B provides equivalent lengths — the length of straight pipe that would produce the same friction loss. A 1" elbow = 2 ft equivalent; a 2" elbow = 6 ft equivalent. Equivalent lengths are added to actual pipe lengths for hydraulic calculations.'
+  },
+  {
+    s: 'sl',
+    t: 'Which type of pipe joint is most commonly used for 2" and smaller fire sprinkler pipe in new construction?',
+    o: ['Welded joints', 'Threaded joints', 'Victaulic (grooved) couplings', 'Soldered copper joints'],
+    a: 1,
+    e: '<b>Fire Sprinkler Pipe Connections:</b> Threaded joints are the most common connection method for 2" and smaller steel pipe in fire sprinkler systems. Grooved (Victaulic-style) mechanical couplings are common for 2½" and larger pipe. Welding is permitted but less common. Copper with soldered joints is used in some residential systems. Each connection method has specific NFPA 13 installation requirements.'
+  },
+  {
+    s: 'sl',
+    t: 'A sprinkler system riser is the:',
+    o: ['The main horizontal pipe running along the ceiling', 'The vertical pipe that connects the water supply to the system, typically containing the main control valve, check valve, and drain', 'The branch line pipe serving individual sprinklers', 'The fire department connection inlet pipe'],
+    a: 1,
+    e: '<b>System Riser:</b> The riser is the vertical supply pipe that rises from the water supply (underground or floor level) to the sprinkler system. It typically contains the main control valve (OS&Y or butterfly), check valve, flow switch, alarm valve (for wet systems), main drain, and pressure gauge. The riser is the central assembly point for all system components.'
+  },
+  {
+    s: 'sl',
+    t: 'Per NFPA 13, OS&Y valves used as system control valves must be:',
+    o: ['Installed in the horizontal position only', 'Electrically supervised or sealed open to detect unauthorized closure', 'Replaced every 10 years per NFPA 25', 'Only installed above ground — underground valves require post indicator valves'],
+    a: 1,
+    e: '<b>NFPA 13 §8.17.1:</b> System control valves must be electrically supervised (connected to the fire alarm system) so that unauthorized closure triggers an alarm. Alternatively, they may be sealed open with a wire seal and recorded on inspection documents. Supervision ensures the sprinkler system cannot be inadvertently or secretly shut down without detection.'
+  },
+  {
+    s: 'sl',
+    t: 'What is the purpose of a main drain on a fire sprinkler system?',
+    o: ['To discharge water in case of a system overpressure condition', 'To allow the system to be drained for maintenance, testing, and pipe work, and to test the water supply', 'To connect to the storm drain system for automatic pressure relief', 'To supply water to the fire department connection'],
+    a: 1,
+    e: '<b>Main Drain:</b> The main drain (minimum 2" for most systems) allows the system piping to be drained for maintenance, freezing prevention, or pipe work. It is also used to flow water for supply testing — opening the main drain fully and reading the residual pressure gives an indication of available water supply. Annual main drain tests are required by NFPA 25.'
+  },
+  {
+    s: 'sl',
+    t: 'A fire sprinkler inspector\'s test valve (ITV) is required to be located:',
+    o: ['At the system riser, adjacent to the main drain', 'At the most remote point of each sprinkler system, simulating the flow of one sprinkler', 'At each floor level in multi-story buildings', 'On the discharge side of the fire pump only'],
+    a: 1,
+    e: '<b>NFPA 13 §8.17.4:</b> The inspector\'s test valve must be located at the most remote point of the sprinkler system and must simulate the flow of a single sprinkler (using an orifice equivalent to the smallest sprinkler K-factor). Operating the ITV confirms the flow alarm activates and verifies water reaches the most remote point of the system.'
+  },
+  {
+    s: 'sl',
+    t: 'What type of sprinkler system is best suited for an unheated warehouse where temperatures regularly fall below 40°F in winter?',
+    o: ['Wet pipe system', 'Dry pipe system', 'Pre-action system', 'Deluge system'],
+    a: 1,
+    e: '<b>Dry Pipe System Application:</b> Dry pipe systems are used in freezing environments because the pipes are filled with pressurized air or nitrogen instead of water. When a sprinkler activates, the air escapes first, then the dry valve trips and water flows into the pipes. This prevents water from freezing in the piping. Wet pipe systems cannot be used where pipes are exposed to freezing temperatures.'
+  },
+  {
+    s: 'sl',
+    t: 'Per NFPA 13, the maximum volume of a single dry pipe valve system (without a quick-opening device) is:',
+    o: ['500 gallons', '750 gallons', '1,000 gallons', 'No volume limit — only time of operation matters'],
+    a: 1,
+    e: '<b>NFPA 13 §8.2.3:</b> A single dry pipe valve system must not exceed 750 gallons of system volume without a quick-opening device (accelerator or exhauster). The limit exists to ensure water reaches the most remote sprinkler within 60 seconds of activation. Larger systems require quick-opening devices or must be split into multiple dry systems.'
+  },
+  {
+    s: 'sl',
+    t: 'Pipe hangers for fire sprinkler systems must be listed and installed per NFPA 13. The maximum hanger spacing for 1" Schedule 40 steel pipe is:',
+    o: ['8 feet', '10 feet', '12 feet', '15 feet'],
+    a: 2,
+    e: '<b>NFPA 13 §9.2.1:</b> 1" Schedule 40 steel pipe requires hangers at maximum 12-foot intervals. Larger pipe allows greater spacing: 1¼" to 2" = 12 ft, 2½" to 3½" = 15 ft, 4" and larger = 15 ft maximum. CPVC pipe has shorter maximum spans. Hanger spacing prevents pipe sag, stress at fittings, and potential pipe movement during system operation or seismic events.'
+  },
+  {
+    s: 'sl',
+    t: 'A fire department connection (FDC) is used to:',
+    o: ['Connect the sprinkler system to the building\'s domestic water supply', 'Allow the fire department to pump supplemental water into the sprinkler system during a fire', 'Test the sprinkler system flow without operating sprinklers', 'Connect the fire alarm system to the sprinkler system'],
+    a: 1,
+    e: '<b>Fire Department Connection (FDC):</b> The FDC is a Siamese-style connection on the exterior of the building that allows a fire department pumper to connect hose lines and pump supplemental water into the sprinkler system. It provides a backup supply when the municipal water pressure is insufficient or during extended operations. FDCs must be visible and accessible from the street.'
+  },
+  {
+    s: 'sl',
+    t: 'Per NFPA 13, concealed spaces containing combustible construction typically require:',
+    o: ['Smoke detectors only — no sprinklers are required in concealed spaces', 'Sprinkler protection unless a qualifying exemption applies', 'Upright sprinklers only in concealed spaces', 'Sprinklers only if the concealed space exceeds 1,000 square feet'],
+    a: 1,
+    e: '<b>NFPA 13 §8.15:</b> Concealed spaces containing combustible construction (wood framing, trusses) require sprinkler protection unless a specific exemption applies (e.g., the space is covered by a listed thermal barrier such as ½" Type X gypsum board on all combustible surfaces). A Level I technician must identify all concealed spaces during the survey and flag them for the designer.'
+  },
+  {
+    s: 'sl',
+    t: 'What is the purpose of the alarm check valve (also called a wet alarm valve) in a wet pipe sprinkler system?',
+    o: ['To prevent water from flowing backward from the system to the water supply', 'To detect waterflow and initiate the water motor alarm and flow switch signal when water flows through the system', 'To regulate system pressure to prevent over-pressurization', 'To drain the system for maintenance'],
+    a: 1,
+    e: '<b>Alarm Check Valve:</b> The alarm check valve is a one-way valve that also has a bypass port to the alarm line. When water flows through the system (due to sprinkler activation or testing), the clapper opens and water flows through the bypass to the water motor gong and electronic flow switch, activating the alarm. It also prevents backflow from the system to the supply.'
+  },
+  {
+    s: 'sl',
+    t: 'A "listed" product in fire protection means:',
+    o: ['The product appears on the contractor\'s approved materials list', 'The product has been evaluated by a recognized testing laboratory (such as UL or FM) and meets specific performance standards', 'The product has been approved by the AHJ for use on that specific project', 'The product is manufactured in the United States'],
+    a: 1,
+    e: '<b>Listed Products:</b> A "listed" product has been tested and certified by a recognized third-party testing laboratory such as Underwriters Laboratories (UL) or FM Approvals. The listing certifies the product meets specific performance standards when installed per the listing conditions. NFPA 13 requires that sprinklers, valves, and hangers be listed for their intended use.'
+  },
+  {
+    s: 'sl',
+    t: 'Per NFPA 13, when a beam on a ceiling is 6 inches deep and 4 feet wide, sprinklers must be:',
+    o: ['Installed above the beam only', 'Installed on each side of the beam if the beam creates a shadow area that a single sprinkler cannot cover', 'Ignored — beams under 12 inches deep do not affect sprinkler placement', 'Spaced at half the normal maximum spacing near the beam'],
+    a: 1,
+    e: '<b>NFPA 13 §10.2.6:</b> Beams can create obstruction zones where water from a distant sprinkler cannot penetrate. A 6-inch deep beam that is 4 feet wide may require sprinklers on both sides if a single sprinkler cannot cover the shadow area. The designer must evaluate each beam\'s geometry — Level I technicians must document beam locations accurately during surveys.'
+  },
+  {
+    s: 'sl',
+    t: 'What does "branch line" mean in a fire sprinkler system?',
+    o: ['The pipe from the water supply to the system riser', 'The pipe that runs along the ceiling from which individual sprinklers hang', 'The pipe connecting the riser to the cross main', 'The underground supply pipe to the building'],
+    a: 1,
+    e: '<b>Sprinkler System Piping Terminology:</b> A branch line is the pipe that runs along the ceiling (or through the structure) from which individual sprinklers are directly connected. The cross main is the larger pipe that feeds the branch lines. The feed main connects the riser to the cross main. Understanding this piping hierarchy is fundamental to reading sprinkler drawings.'
+  },
+  {
+    s: 'sl',
+    t: 'Per NFPA 13, sprinklers in a wet pipe system are required to be tested at what minimum hydrostatic pressure for 2 hours?',
+    o: ['100 psi', '150 psi', '200 psi', '250 psi'],
+    a: 2,
+    e: '<b>NFPA 13 §29.2.1:</b> New wet pipe sprinkler systems must pass a hydrostatic test at 200 psi for 2 hours (or 50 psi above maximum system working pressure, whichever is greater). The test verifies all joints and pipe are leak-free before the system is placed in service. This test must be witnessed by the AHJ or their representative.'
+  },
+  {
+    s: 'sl',
+    t: 'A flow test of the water supply yields: static pressure = 65 psi, residual pressure = 52 psi at 500 gpm. If the system demands 300 gpm, is the water supply likely adequate at 40 psi demand pressure?',
+    o: ['No — 52 psi is the only available pressure regardless of flow', 'Yes — at 300 gpm the available pressure will be higher than 52 psi (approximately 57–59 psi), which exceeds the 40 psi demand', 'Cannot determine from this data', 'No — static pressure must exceed demand pressure at all flows'],
+    a: 1,
+    e: '<b>Water Supply Analysis:</b> At 300 gpm (less than the 500 gpm test flow), the available pressure from the supply curve will be HIGHER than the 52 psi residual at 500 gpm. The supply pressure increases as flow decreases. At approximately 300 gpm, available pressure ≈ 57–59 psi, well above the 40 psi demand. The water supply is adequate for this demand.'
+  },
+  {
+    s: 'sl',
+    t: 'Per NFPA 13, a sprinkler system designed using the pipe schedule method must fall within what occupancy classification limits?',
+    o: ['Extra Hazard occupancies only', 'Light Hazard and Ordinary Hazard Group 1 and 2 within specified area limits', 'Any occupancy — pipe schedule always applies', 'Only new construction — existing systems may not use pipe schedule'],
+    a: 1,
+    e: '<b>NFPA 13 §28.1 — Pipe Schedule:</b> The pipe schedule method is permitted for Light Hazard and Ordinary Hazard Group 1 and 2 occupancies within the maximum area limits defined in Chapter 28 tables. Extra Hazard occupancies always require hydraulic calculations. For Level I technicians, knowing when pipe schedule is applicable vs. when calculations are required is important.'
+  },
+  {
+    s: 'sl',
+    t: 'In the pipe schedule method per NFPA 13, the pipe size for a branch line serving 8 standard spray sprinklers in an Ordinary Hazard Group 1 occupancy would be found in:',
+    o: ['NFPA 13 Table 19.3.3.1.1', 'NFPA 13 Chapter 28 pipe schedule tables', 'NFPA 13 Annex B equivalent length tables', 'The sprinkler manufacturer\'s data sheet'],
+    a: 1,
+    e: '<b>NFPA 13 Chapter 28:</b> The pipe schedule tables in Chapter 28 define the maximum number of sprinklers each pipe size may serve for each occupancy classification (Light Hazard and Ordinary Hazard). For example, in Ordinary Hazard, a 1¼" pipe may serve up to 3 sprinklers, 1½" up to 5, 2" up to 10, and so on. These tables are the foundation of pipe schedule design.'
+  },
+  {
+    s: 'sl',
+    t: 'When assisting with a hydrant flow test, the technician opening the flow hydrant should open it:',
+    o: ['Quickly — all the way open, as fast as possible', 'Slowly and fully to avoid water hammer and allow pressure to stabilize before readings are taken', 'Only halfway to simulate system demand conditions', 'Just enough to achieve 500 gpm regardless of full-open flow'],
+    a: 1,
+    e: '<b>NFPA 291 Flow Test Procedure:</b> Hydrant valves must be opened slowly and fully to prevent water hammer (pressure surge from rapid valve opening) and to allow system pressure to stabilize before readings are taken. The residual pressure gauge at the gauge hydrant must stabilize before recording. Rushing the test produces inaccurate results that could compromise the system design.'
+  },
+  {
+    s: 'sl',
+    t: 'The static pressure reading during a flow test represents:',
+    o: ['The maximum pressure available when all sprinklers are flowing', 'The pressure in the water main with no flow — baseline pressure with no demand', 'The residual pressure after the fire pump starts', 'The average pressure during the test'],
+    a: 1,
+    e: '<b>Static Pressure:</b> Static pressure is the pressure in the water distribution system when NO water is flowing anywhere in the test setup. It represents the maximum pressure available from the supply. Static pressure is always higher than residual pressure. Both static and residual are needed to characterize the water supply for hydraulic design.'
+  },
+  {
+    s: 'sl',
+    t: 'Per NFPA 13, what is the minimum size of pipe permitted for a fire sprinkler branch line?',
+    o: ['½ inch', '¾ inch', '1 inch', '1¼ inch'],
+    a: 1,
+    e: '<b>NFPA 13 §8.16.1:</b> The minimum pipe size for a fire sprinkler branch line is ¾ inch. This applies to branch lines serving one or two sprinklers in certain configurations. For most branch lines, 1-inch pipe is the practical minimum. Understanding minimum pipe sizes prevents under-sized installations that could fail hydraulic requirements.'
+  },
+  {
+    s: 'sl',
+    t: 'A sidewall sprinkler is typically used in which situation?',
+    o: ['In rack storage to protect goods at intermediate levels', 'In rooms where pipes cannot be run across the ceiling — the sprinkler is mounted on a wall and covers the room laterally', 'In freezer rooms where upright sprinklers cannot be used', 'In areas with sloped ceilings where pendent sprinklers cannot be installed'],
+    a: 1,
+    e: '<b>Sidewall Sprinkler Application:</b> Sidewall sprinklers are mounted on walls near the ceiling and project water in a horizontal pattern across the room. They are used when ceiling piping is not practical (finished hotel rooms, narrow corridors, residential spaces) or when aesthetic requirements prohibit ceiling-mounted pipe. They have specific coverage area and spacing requirements different from pendent sprinklers.'
+  },
+  {
+    s: 'sl',
+    t: 'When drawing a basic sprinkler layout, the technician must ensure that no sprinkler is more than what maximum distance from any wall?',
+    o: ['One-third of the maximum spacing', 'One-half of the maximum spacing', 'The full maximum spacing', 'There is no maximum — walls only require a 4-inch minimum distance'],
+    a: 1,
+    e: '<b>NFPA 13 §10.2.5.2:</b> No sprinkler may be more than one-half the maximum allowable spacing from any wall. For standard spray sprinklers (15-foot max spacing), no sprinkler may be more than 7.5 feet from any wall. This ensures wall areas receive adequate water coverage. Both the 4-inch minimum AND 7.5-foot maximum wall distances must be satisfied.'
+  },
+  {
+    s: 'sl',
+    t: 'Per NFPA 13, what is the correct deflector orientation for a pendent sprinkler installed in a concealed space above a suspended ceiling?',
+    o: ['Pendent sprinklers must always be upright in concealed spaces', 'Upright sprinklers are used in concealed spaces — pendent sprinklers discharge downward and would not cover a concealed space properly', 'The deflector faces downward regardless of location', 'Sidewall sprinklers are required in all concealed spaces'],
+    a: 1,
+    e: '<b>Sprinkler Selection for Concealed Spaces:</b> In concealed spaces above suspended ceilings, upright sprinklers are the correct choice. The upright sprinkler discharges water upward where it hits the deflector and distributes outward and downward through the concealed space. A pendent sprinkler pointing downward into the concealed space would discharge water away from the combustible construction above.'
+  },
+  {
+    s: 'sl',
+    t: 'A quick-response (QR) sprinkler has a smaller thermal element (lower RTI — Response Time Index) than a standard response sprinkler. This means:',
+    o: ['It flows less water per minute than a standard response sprinkler', 'It activates faster at a given temperature, providing earlier suppression of the fire', 'It has a higher temperature rating than standard response sprinklers', 'It is only approved for residential systems under NFPA 13R'],
+    a: 1,
+    e: '<b>Quick-Response Sprinklers:</b> QR sprinklers have a lower Response Time Index (RTI ≤ 50 (m·s)^0.5), meaning they activate faster when exposed to hot gases from a fire. Faster activation means earlier water application, which can reduce fire damage and occupant risk. NFPA 13 allows a 25% design area reduction when QR sprinklers are used throughout a Light Hazard occupancy.'
+  },
+  {
+    s: 'sl',
+    t: 'When installing a new sprinkler system in a building with an existing domestic water supply, the contractor must install a:',
+    o: ['Pressure reducing valve on the domestic line only', 'Backflow preventer to prevent contaminated sprinkler system water from entering the potable water supply', 'Booster pump to maintain sprinkler system pressure', 'Separate water meter for the fire sprinkler supply'],
+    a: 1,
+    e: '<b>Backflow Prevention:</b> A listed backflow preventer (double check valve assembly or reduced pressure zone device) must be installed to prevent water from the sprinkler system from contaminating the potable domestic water supply. Stagnant water in sprinkler pipes can become contaminated. Backflow prevention is required by NFPA 13 and local plumbing codes.'
+  },
+  {
+    s: 'sl',
+    t: 'What is the primary purpose of a pressure gauge on a fire sprinkler system?',
+    o: ['To activate the fire alarm when pressure drops below a set point', 'To monitor system pressure for leak detection, system condition monitoring, and verification during testing', 'To regulate pressure to each branch line', 'To indicate how many sprinklers have opened during a fire'],
+    a: 1,
+    e: '<b>Pressure Gauges — NFPA 13 §8.17.5:</b> Pressure gauges monitor system pressure to detect leaks (gradual pressure loss), verify adequate water supply pressure, and confirm proper operation during testing. NFPA 13 requires gauges on the riser above and below the alarm check valve, and at the top of each riser in dry systems. Gauge readings are recorded during NFPA 25 inspections.'
+  },
+  {
+    s: 'sl',
+    t: 'Per NFPA 13, a dry pendent sprinkler is used when:',
+    o: ['A standard pendent sprinkler is installed in a wet pipe system', 'A pendent sprinkler must be installed in a location exposed to freezing — the dry barrel prevents water from entering the area subject to freezing until activation', 'The system is a dry pipe system and upright sprinklers are not available', 'High-temperature areas require a specially coated sprinkler'],
+    a: 1,
+    e: '<b>Dry Pendent Sprinkler:</b> A dry pendent sprinkler has an extended dry barrel that keeps water away from the cold environment until the sprinkler activates. It is used when a wet pipe system serves heated areas but individual sprinklers extend into unheated spaces (e.g., through a ceiling into a walk-in cooler, or through an exterior soffit). The dry barrel connects to the wet system piping in the heated space.'
+  },
+  {
+    s: 'sl',
+    t: 'Per NFPA 13, which pipe material is NOT acceptable for use in fire sprinkler systems without specific listing requirements?',
+    o: ['Black steel pipe', 'Galvanized steel pipe', 'CPVC thermoplastic pipe', 'PVC Schedule 40 drainage pipe'],
+    a: 3,
+    e: '<b>Acceptable Pipe Materials (NFPA 13 §6.3):</b> PVC Schedule 40 drainage pipe is NOT listed for fire sprinkler use. Acceptable materials include black steel (Schedule 40 and 10), galvanized steel, copper, CPVC (listed types only such as FlowGuard Gold or BlazeMaster), and certain stainless steel. CPVC must be specifically listed for fire sprinkler use — not just any CPVC pipe qualifies.'
+  },
+  {
+    s: 'sl',
+    t: 'What does ESFR stand for and where are ESFR sprinklers typically used?',
+    o: ['Early Suppression Fast Response — used in high-rack storage warehouses to suppress fires at the source', 'Extended Spray Flow Rate — used in Extra Hazard Group 2 occupancies for high-challenge fires', 'Elevated Structural Fire Response — used in high-rise buildings above 75 feet', 'Emergency Standby Fire Response — used in pre-action systems for computer rooms'],
+    a: 0,
+    e: '<b>ESFR — Early Suppression Fast Response:</b> ESFR sprinklers are designed to suppress (not just control) fires in high-piled storage warehouses. They deliver a large volume of water at high pressure directly to the fire source before it grows beyond suppression capability. ESFR sprinklers cannot be used with in-rack sprinklers and require specific storage configurations per NFPA 13 Chapter 14.'
+  },
+  {
+    s: 'sl',
+    t: 'When a fire sprinkler system is impaired (temporarily out of service), who must be notified per NFPA 25?',
+    o: ['Only the building owner', 'The building owner, the AHJ, the alarm monitoring company, and the insurance carrier', 'Only the fire department', 'Only the AHJ — all other notifications are optional'],
+    a: 1,
+    e: '<b>NFPA 25 §15.5 — Impairment Notification:</b> When a sprinkler system is impaired, the building owner/occupant, AHJ (fire department/fire marshal), alarm monitoring company, and insurance carrier must ALL be notified. An impairment coordinator must be assigned. Fire watch may be required. This notification requirement is critical to public safety and frequently tested.'
+  },
+  {
+    s: 'sl',
+    t: 'Per NFPA 13, what does "density/area method" refer to in sprinkler system design?',
+    o: ['The method of counting sprinkler heads per square foot of floor area', 'The hydraulic design method where a minimum water discharge density (gpm/ft²) is required over a specific design area (ft²)', 'The structural method of sizing pipe based on water weight per linear foot', 'The method of selecting pipe size based on occupancy classification tables'],
+    a: 1,
+    e: '<b>Density/Area Method (NFPA 13 §19.3.3.1):</b> The density/area method requires that the sprinkler system deliver a minimum discharge density (e.g., 0.10 gpm/ft² for Light Hazard) over a minimum design area (e.g., 1,500 ft²). The hydraulic calculation must prove the water supply can provide this density over the design area at the most demanding location.'
+  },
+  {
+    s: 'sl',
+    t: 'A technician is assisting with a coordination survey and finds that a planned 4" sprinkler main conflicts with a 16" HVAC duct at the same elevation. The correct response is to:',
+    o: ['Cut the duct to accommodate the pipe — mechanical trades must yield to fire protection', 'Document the conflict and report it to the project manager and designer for resolution before installation', 'Reroute the sprinkler pipe without notification — field reroutes are standard practice', 'Install the pipe below the duct — no coordination is needed'],
+    a: 1,
+    e: '<b>MEP Coordination:</b> Conflicts between trades must be resolved before installation — not in the field unilaterally. A 4" main conflicting with a major HVAC duct requires coordination meeting discussion, design team resolution, and potentially a revised drawing. Rerouting without approval can violate hydraulic design, structural clearances, or another trade\'s clearance requirements.'
+  },
+  {
+    s: 'sl',
+    t: 'Per NFPA 13, what is the maximum horizontal distance a sprinkler may be installed from the nearest pipe (armover length) for a standard installation?',
+    o: ['12 inches', '24 inches', '36 inches', 'There is no specific limit — the armover can be any length needed'],
+    a: 2,
+    e: '<b>NFPA 13 §10.2.1 — Armovers:</b> A sprinkler armover (the short pipe from the branch line to the sprinkler) should be as short as practical. While NFPA 13 does not state a universal armover limit for steel pipe, it limits armovers to the specific conditions in the listing. For CPVC, the max armover is 4 feet. For standard systems, armovers beyond 24" require additional support. Always verify the sprinkler listing for armover limits.'
+  },
+  {
+    s: 'sl',
+    t: 'What information is required on a sprinkler drawing submitted for AHJ approval per NFPA 13?',
+    o: ['Only the number of sprinklers and the pipe sizes', 'Building dimensions, occupancy classification, sprinkler type and spacing, pipe sizes, water supply data, and hydraulic calculations', 'Only the hydraulic calculation summary sheet', 'The architect\'s floor plan with sprinkler symbols added — no additional information is required'],
+    a: 1,
+    e: '<b>NFPA 13 §28.1 — Submittal Requirements:</b> A complete sprinkler submittal includes: building dimensions and occupancy; sprinkler types, K-factors, and temperature ratings; pipe sizes and materials; hanger locations; water supply data; hydraulic calculations; equipment specifications; and legend/symbol schedule. Incomplete submittals are rejected by the AHJ and delay permits.'
+  },
+  {
+    s: 'sl',
+    t: 'Per NFPA 13, residential sprinklers used in NFPA 13R and 13D systems must be listed specifically for residential use because:',
+    o: ['They are less expensive than commercial sprinklers', 'They are designed and listed to activate quickly to protect occupants who may be asleep — faster response and specific spray patterns for residential room coverage', 'They require less water pressure than commercial sprinklers', 'They do not require hydraulic calculations under 13R'],
+    a: 1,
+    e: '<b>Residential Sprinklers:</b> Residential sprinklers are specifically listed for residential applications — they activate faster (quick-response) to protect sleeping occupants, and their spray patterns are designed to wet the walls and floor of a room to slow fire spread and improve tenability for escape. Standard commercial sprinklers are not listed as substitutes for residential sprinklers in 13R/13D systems.'
+  },
+
+  // ── 1.6 ASSEMBLE SUBMITTAL PACKAGES (1–10%) — 7 questions ────────────────
+  {
+    s: 'asp',
+    t: 'Which of the following items is typically included in a fire sprinkler submittal package submitted to the AHJ for permit?',
+    o: ['Only the hydraulic calculation summary sheet', 'Complete sprinkler drawings, hydraulic calculations, equipment cut sheets (product data), and a cover letter', 'Only the floor plan with sprinkler locations marked', 'The contractor\'s license number and insurance certificate only'],
+    a: 1,
+    e: '<b>Submittal Package Contents:</b> A complete AHJ submittal includes: sprinkler system drawings (floor plans, riser diagram, details), hydraulic calculations, equipment cut sheets (manufacturer product data for sprinklers, valves, and special equipment), a cover letter identifying the project, and any special forms required by the jurisdiction. Missing any component causes rejection and permit delays.'
+  },
+  {
+    s: 'asp',
+    t: 'What is a "cut sheet" or "product data sheet" in the context of a fire sprinkler submittal?',
+    o: ['A list of pipe cuts needed for the job', 'A manufacturer\'s data sheet showing the product\'s listing, performance data, installation requirements, and approvals', 'The AHJ\'s cut-sheet form for rejected submittals', 'A cost breakdown sheet from the supplier'],
+    a: 1,
+    e: '<b>Cut Sheets / Product Data:</b> A cut sheet is the manufacturer\'s technical data sheet for a specific product (sprinkler, valve, fitting). It shows UL/FM listing numbers, temperature ratings, K-factors, installation constraints, and approvals. AHJs use cut sheets to verify that submitted products are listed for the intended application. Cut sheets for all non-standard equipment must be included in the submittal.'
+  },
+  {
+    s: 'asp',
+    t: 'A submittal log is used on a fire sprinkler project to:',
+    o: ['Track the cost of all submitted change orders', 'Track the status of all submitted materials and drawings — what was submitted, when, and whether it was approved, rejected, or is pending', 'Record the AHJ\'s inspection comments', 'Document daily work progress on the job site'],
+    a: 1,
+    e: '<b>Submittal Log:</b> The submittal log tracks every drawing, product data sheet, and calculation submitted for review. It records the submission date, reviewer, review status (approved, approved as noted, rejected, resubmit), and return date. Maintaining an accurate submittal log prevents confusion about what has been approved and ensures nothing is installed without proper review.'
+  },
+  {
+    s: 'asp',
+    t: 'When a submittal is returned marked "APPROVED AS NOTED," this means:',
+    o: ['The submittal is fully approved — "noted" means the reviewer read it', 'The submittal is approved with conditions — the reviewer\'s comments (notes) must be incorporated before or during installation', 'The submittal is rejected and must be completely resubmitted', 'Approval is pending final field inspection'],
+    a: 1,
+    e: '<b>Submittal Review Stamps:</b> "Approved As Noted" means the reviewer has conditionally approved the submittal but has made specific comments or corrections that must be incorporated. The contractor must review all notes carefully and comply with them. Common notes include: "verify clearance with structural," "provide listed product data," or "revise as shown on redlines."'
+  },
+  {
+    s: 'asp',
+    t: 'A hydraulic calculation summary sheet must show the available water supply and the system demand on the same graph or table to demonstrate:',
+    o: ['That the system uses the most expensive pipe available', 'That the available water supply pressure exceeds the system demand pressure at the required flow — confirming the water supply is adequate', 'That the system complies with the pipe schedule method', 'That the designer has a valid engineering license'],
+    a: 1,
+    e: '<b>Hydraulic Calculation Summary:</b> The summary sheet must show both the water supply (from the flow test — static and residual pressure) and the system demand (required flow and pressure) to demonstrate adequacy. The supply curve must lie above and to the right of the demand point on the flow-pressure graph, confirming the supply can meet the demand with a positive safety margin.'
+  },
+  {
+    s: 'asp',
+    t: 'A closeout package for a completed fire sprinkler project typically includes:',
+    o: ['Only the final invoice and payment receipt', 'As-built drawings, testing and inspection reports, equipment warranties, operation and maintenance manuals, and any required certifications', 'Only the hydraulic calculation submittal previously approved by the AHJ', 'The preliminary design drawings used for permitting'],
+    a: 1,
+    e: '<b>Closeout Package:</b> The project closeout package documents the completed, installed system and transfers responsibility to the owner. It includes: as-built (record) drawings showing actual installed conditions, system test reports (hydrostatic, trip tests, alarm tests), equipment warranties, O&M manuals, NFPA 13 contractor\'s material and test certificate, and any required certifications from the AHJ.'
+  },
+  {
+    s: 'asp',
+    t: 'The "Contractor\'s Material and Test Certificate" required by NFPA 13 must be completed by:',
+    o: ['The AHJ after the final inspection', 'The installing contractor, certifying that the system was installed per NFPA 13 and the approved plans, and that all required tests were performed and passed', 'The system designer/engineer of record', 'The equipment manufacturer for each listed product installed'],
+    a: 1,
+    e: '<b>NFPA 13 §29.2 — Contractor\'s Certificate:</b> The installing contractor must complete and sign the Contractor\'s Material and Test Certificate, certifying that the system was installed per the approved drawings and NFPA 13, that all materials used are listed and appropriate, and that all required tests were witnessed and passed. This document becomes part of the permanent record for the building.'
+  },
+
+  // ── 1.7 PROJECT CORRESPONDENCES (1–10%) — 7 questions ────────────────────
+  {
+    s: 'pc',
+    t: 'When communicating with an AHJ (fire marshal or building department) about a plan review comment, the best practice is to:',
+    o: ['Call the AHJ and discuss the issue verbally — phone calls are faster', 'Document all communications in writing — confirm verbal discussions with a follow-up email or letter summarizing what was discussed and agreed upon', 'Have the owner contact the AHJ directly — the contractor should not communicate with the AHJ', 'Wait for the AHJ to initiate all correspondence'],
+    a: 1,
+    e: '<b>AHJ Communication Best Practice:</b> All communications with the AHJ should be documented in writing. While phone calls are useful for quick clarification, every discussion should be followed up in writing (email or letter) confirming the conversation, decisions made, and any agreed-upon actions. This protects all parties and creates a clear record of AHJ direction and approvals.'
+  },
+  {
+    s: 'pc',
+    t: 'A Level I technician receives a verbal instruction from the general contractor\'s superintendent to change the pipe routing in a finished corridor without a formal written direction. The technician should:',
+    o: ['Make the change — verbal instructions from the GC superintendent are authoritative', 'Request the change in writing before proceeding — verbal instructions cannot authorize scope or design changes', 'Make the change and document it in their own notes', 'Refuse all GC instructions — only the designer can direct changes'],
+    a: 1,
+    e: '<b>Field Change Management:</b> Verbal instructions to change pipe routing — which may affect hydraulics, code compliance, or contract scope — must be confirmed in writing before execution. This protects the fire sprinkler contractor and ensures design accountability. A simple email reply from the GC is sufficient documentation, but work should not begin until written confirmation is received.'
+  },
+  {
+    s: 'pc',
+    t: 'An AHJ inspection reveals a minor discrepancy between the approved drawings and the installed system — specifically, one branch line was shifted 6 inches from the planned location due to a beam. The technician should:',
+    o: ['Deny the discrepancy — the inspector must prove it with a survey', 'Document the as-built condition, explain the field condition that required the change, and ask whether a drawing revision or field correction is required by the AHJ', 'Move the pipe back to its original planned position immediately', 'Submit a change order to the owner for the additional work'],
+    a: 1,
+    e: '<b>AHJ Inspection Response:</b> When an inspection reveals a discrepancy, the correct response is honest documentation of what was installed and why, combined with a professional question to the AHJ about whether a drawing revision or field correction is needed. AHJs frequently accept minor field adjustments as long as code compliance is maintained and the as-built drawings are updated.'
+  },
+  {
+    s: 'pc',
+    t: 'A "transmittal" in construction document management is:',
+    o: ['A change order request submitted to the owner', 'A cover document that accompanies and formally records the transfer of drawings, submittals, or other documents between parties', 'A notice of non-conformance issued by the AHJ', 'An invoice for materials delivered to the job site'],
+    a: 1,
+    e: '<b>Transmittal:</b> A transmittal is a cover sheet that formally documents the transfer of documents (drawings, submittals, RFIs, samples) from one party to another. It lists what is being sent, the purpose, the date, the sender, and the recipient. Transmittals create a paper trail proving what was sent, to whom, and when — critical for resolving disputes about whether documents were delivered.'
+  },
+  {
+    s: 'pc',
+    t: 'If a Level I technician discovers a potential code violation on an existing part of the building (not the sprinkler scope) during their work, they should:',
+    o: ['Correct the violation themselves — all trades share code compliance responsibility', 'Document and report the observation to their supervisor — it is not the technician\'s responsibility to correct another trade\'s work, but safety observations must be reported', 'Ignore it — the sprinkler contractor is only responsible for their own scope', 'Notify the AHJ directly before informing the supervisor'],
+    a: 1,
+    e: '<b>Safety Observation Reporting:</b> A Level I technician who notices a potential code violation or safety hazard outside their scope should document it and report it to their supervisor. The supervisor can then notify the appropriate party (GC, owner, or AHJ). Technicians should not attempt to correct another trade\'s work, but they should not ignore safety observations either.'
+  },
+  {
+    s: 'pc',
+    t: 'At project closeout, which document formally certifies that the fire sprinkler system has been tested and is ready for service?',
+    o: ['The certificate of occupancy issued by the building department', 'The NFPA 13 Contractor\'s Material and Test Certificate signed by the installing contractor', 'The hydraulic calculation summary approved by the AHJ', 'The manufacturer\'s warranty card for the alarm valve'],
+    a: 1,
+    e: '<b>Contractor\'s Material and Test Certificate (NFPA 13 §29.2):</b> This NFPA 13-required document, signed by the installing contractor, certifies that the system was installed per the standard, all components are listed and appropriate, and all required tests were performed and passed. It must be framed and hung at the system riser or kept in the mechanical room, and a copy goes to the owner and AHJ.'
+  },
+  {
+    s: 'pc',
+    t: 'After completing a fire sprinkler installation, as-built drawings are required to show:',
+    o: ['The original design drawings with no changes — as-built means the approved design', 'The actual installed conditions — all field changes, pipe route modifications, added or removed sprinklers, and actual equipment locations', 'Only changes approved through formal change orders', 'Only the hydraulic calculation nodes and pipe sizes'],
+    a: 1,
+    e: '<b>As-Built Drawings:</b> As-built drawings document exactly what was installed in the field, including all changes from the approved design. They are the permanent record of the actual system and are essential for future service, maintenance, modifications, and emergency response. NFPA 13 requires that as-built drawings be provided to the building owner and kept at the facility.'
+  }
+];
+
+
+var STORAGE_KEY = 'nicet_l1_v3';
+var state = loadState();
+
+function loadState() {
+  try { var s = localStorage.getItem(STORAGE_KEY); if (s) return JSON.parse(s); } catch(e) {}
+  return { answers: {}, revealed: {}, filter: 'all', view: 'exam' };
+}
+function saveState() {
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch(e) {}
+}
+function totalStats() {
+  var ans = 0, cor = 0;
+  for (var i = 0; i < QUESTIONS.length; i++) {
+    if (state.answers[i] !== undefined) { ans++; if (state.answers[i] === QUESTIONS[i].a) cor++; }
+  }
+  return { ans: ans, cor: cor, total: QUESTIONS.length };
+}
+function sectionStats() {
+  var c = {};
+  for (var s = 0; s < SECTIONS.length; s++) { c[SECTIONS[s].id] = { total: 0, answered: 0, correct: 0 }; }
+  for (var i = 0; i < QUESTIONS.length; i++) {
+    var q = QUESTIONS[i];
+    c[q.s].total++;
+    if (state.answers[i] !== undefined) { c[q.s].answered++; if (state.answers[i] === q.a) c[q.s].correct++; }
+  }
+  return c;
+}
+function filteredQuestions() {
+  var result = [];
+  for (var i = 0; i < QUESTIONS.length; i++) {
+    var q = QUESTIONS[i];
+    if (state.filter === 'all') result.push({ q: q, i: i });
+    else if (state.filter === 'unanswered' && state.answers[i] === undefined) result.push({ q: q, i: i });
+    else if (state.filter === 'wrong' && state.answers[i] !== undefined && state.answers[i] !== q.a) result.push({ q: q, i: i });
+    else if (q.s === state.filter) result.push({ q: q, i: i });
+  }
+  return result;
+}
+function render() {
+  var sc = totalStats();
+  var pct = sc.ans > 0 ? Math.round(sc.cor / sc.ans * 100) : 0;
+  document.getElementById('hs-pct').textContent = pct + '%';
+  document.getElementById('hs-rem').textContent = sc.total - sc.ans;
+  document.getElementById('prog-fill').style.width = Math.round(sc.ans / sc.total * 100) + '%';
+  document.getElementById('prog-label').textContent = sc.ans + ' of ' + sc.total + ' answered';
+  document.getElementById('prog-score').textContent = 'Score: ' + sc.cor + ' / ' + (sc.ans || 0);
+  if (state.view === 'results') {
+    document.getElementById('exam-screen').style.display = 'none';
+    document.getElementById('results-screen').style.display = 'block';
+    renderResults(sc); return;
+  }
+  document.getElementById('exam-screen').style.display = 'block';
+  document.getElementById('results-screen').style.display = 'none';
+  renderFilterTabs(sc);
+  renderQuestions();
+}
+function renderFilterTabs(sc) {
+  var cc = sectionStats();
+  var wrong = 0;
+  for (var i in state.answers) { if (state.answers[i] !== QUESTIONS[i].a) wrong++; }
+  var unanswered = sc.total - sc.ans;
+  var html = '<button class="ftab ' + (state.filter === "all" ? "active" : "") + '" onclick="setFilter('all')">All (' + sc.total + ')</button>';
+  html += '<button class="ftab ' + (state.filter === "unanswered" ? "active" : "") + '" onclick="setFilter('unanswered')">Unanswered (' + unanswered + ')</button>';
+  html += '<button class="ftab ' + (state.filter === "wrong" ? "active warn-tab" : "warn-tab") + '" onclick="setFilter('wrong')">Incorrect (' + wrong + ')</button>';
+  for (var s = 0; s < SECTIONS.length; s++) {
+    var sec = SECTIONS[s];
+    var c = cc[sec.id];
+    var allDone = c.answered === c.total && c.total > 0;
+    var isActive = state.filter === sec.id;
+    var label = sec.label.split(' ').slice(0, 2).join(' ');
+    html += '<button class="ftab ' + (isActive ? 'active' : (allDone ? 'done-tab' : '')) + '" onclick="setFilter('' + sec.id + '')">' + label + ' (' + c.total + ')</button>';
+  }
+  document.getElementById('filter-tabs').innerHTML = html;
+}
+function renderQuestions() {
+  var qs = filteredQuestions();
+  var letters = ['A', 'B', 'C', 'D'];
+  var container = document.getElementById('questions-container');
+  if (qs.length === 0) { container.innerHTML = '<div class="empty">No questions match this filter.</div>'; return; }
+  var html = '';
+  for (var x = 0; x < qs.length; x++) {
+    var q = qs[x].q, i = qs[x].i;
+    var sec = null;
+    for (var s = 0; s < SECTIONS.length; s++) { if (SECTIONS[s].id === q.s) { sec = SECTIONS[s]; break; } }
+    var sel = state.answers[i];
+    var shown = state.revealed[i];
+    html += '<div class="q-card">';
+    html += '<div class="q-header"><span class="q-num">Q' + (i + 1) + '</span>';
+    html += '<span class="sec-tag ' + sec.tagClass + '">' + sec.label + '</span>';
+    html += '<span style="font-size:10px;color:var(--text3)">' + sec.pct + ' of exam</span></div>';
+    html += '<div class="q-text">' + q.t + '</div><div class="options">';
+    for (var j = 0; j < q.o.length; j++) {
+      var cls = 'opt';
+      if (shown) { if (j === q.a) cls += ' correct'; else if (sel === j) cls += ' wrong'; }
+      else if (sel === j) cls += ' selected';
+      html += '<div class="' + cls + '" onclick="pickAnswer(' + i + ',' + j + ')"><span class="opt-letter">' + letters[j] + '</span>' + q.o[j] + '</div>';
+    }
+    html += '</div>';
+    if (sel !== undefined && !shown) html += '<button class="check-btn" onclick="revealAnswer(' + i + ')">Check Answer</button>';
+    if (shown) html += '<div class="explanation">' + q.e + '</div>';
+    html += '</div>';
+  }
+  container.innerHTML = html;
+}
+function renderResults(sc) {
+  var pct = Math.round(sc.cor / sc.total * 100);
+  var pass = pct >= 70;
+  var cc = sectionStats();
+  document.getElementById('score-dial').style.borderColor = pass ? 'var(--green)' : 'var(--red)';
+  document.getElementById('final-pct').style.color = pass ? 'var(--green)' : 'var(--red)';
+  document.getElementById('final-pct').textContent = pct + '%';
+  document.getElementById('final-label').textContent = pass ? 'PASSING' : 'KEEP STUDYING';
+  document.getElementById('result-title').textContent = pass ? 'Level I Passed! On to Level II!' : 'Keep drilling!';
+  document.getElementById('result-sub').textContent = sc.cor + ' of ' + sc.total + ' correct. NICET passing threshold is approximately 70%';
+  var secHtml = '';
+  for (var s = 0; s < SECTIONS.length; s++) {
+    var sec = SECTIONS[s];
+    var c = cc[sec.id];
+    var sp = c.answered > 0 ? Math.round(c.correct / c.answered * 100) : 0;
+    secHtml += '<div class="sec-result-card"><div class="src-label">' + sec.label + '</div>';
+    secHtml += '<div class="src-score">' + c.correct + '/' + c.total + ' <span style="font-size:13px;color:var(--text3)">(' + sp + '%)</span></div>';
+    secHtml += '<div class="src-bar"><div class="src-bar-fill" style="width:' + sp + '%"></div></div></div>';
+  }
+  document.getElementById('sec-results').innerHTML = secHtml;
+}
+function pickAnswer(i, j) { if (state.revealed[i]) return; state.answers[i] = j; saveState(); render(); }
+function revealAnswer(i) { state.revealed[i] = true; saveState(); render(); }
+function setFilter(f) { state.filter = f; saveState(); render(); window.scrollTo({ top: 0, behavior: 'smooth' }); }
+function showResults() { state.view = 'results'; saveState(); render(); window.scrollTo({ top: 0, behavior: 'smooth' }); }
+function backToExam() { state.view = 'exam'; state.filter = 'all'; saveState(); render(); window.scrollTo({ top: 0, behavior: 'smooth' }); }
+function resetExam() { if (!confirm('Reset all answers and start over?')) return; state = { answers: {}, revealed: {}, filter: 'all', view: 'exam' }; saveState(); render(); window.scrollTo({ top: 0, behavior: 'smooth' }); }
+render();
+
+</script>
+</body>
+</html>
